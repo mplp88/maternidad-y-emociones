@@ -20,12 +20,17 @@ const router = createRouter({
       component: () => import('../pages/BlogView.vue'),
     },
     {
-      path: '/blogs/new',
+      path: '/blog/:id',
+      name: 'BlogDetail',
+      component: () => import('../pages/BlogDetailView.vue'),
+    },
+    {
+      path: '/dashboard/blog/new',
       name: 'BlogNew',
       component: () => import('../pages/BlogNewView.vue'),
     },
     {
-      path: '/blogs/edit/:id',
+      path: '/dashboard/blog/edit/:id',
       name: 'BlogEdit',
       component: () => import('../pages/BlogEditView.vue'),
     },
