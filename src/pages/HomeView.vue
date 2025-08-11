@@ -35,13 +35,25 @@
     <h3 class="text-3xl font-bold text-gray-900 mb-12">Últimas publicaciones</h3>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <article class="space-y-4" v-for="post in posts" :key="post._id">
-        <h4 class="text-xl font-semibold text-gray-900 leading-tight">
-          {{ post.title }}
-        </h4>
-        <p class="text-gray-600 italic">{{ post.summary }}</p>
-        <time class="text-sm text-gray-500">{{ post.date }}</time>
-      </article>
+      <RouterLink
+        v-for="post in posts"
+        :key="post._id"
+        :to="`/blog/${post._id}`"
+        class="block bg-white rounded-xl shadow hover:shadow-lg transition p-6 h-64 cursor-pointer"
+      >
+        <div class="flex flex-col h-full">
+          <h4 class="text-xl font-semibold text-gray-900 mb-2">
+            {{ post.title }}
+          </h4>
+          <p
+            class="text-gray-600 italic flex-1 overflow-hidden text-ellipsis"
+            style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical"
+          >
+            {{ post.summary }}
+          </p>
+          <time class="text-sm text-gray-500 mt-4">{{ post.date }}</time>
+        </div>
+      </RouterLink>
     </div>
   </section>
 </template>

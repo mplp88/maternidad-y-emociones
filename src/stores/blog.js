@@ -1,38 +1,40 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 import axios from 'axios'
 
-export const useBlogStore = defineStore('blog', {
-  state: () => ({
-    blogsCache: {}, // { pageNumber: [blogs] }
-    loading: false,
-    error: null,
-  }),
+export const useBlogStore = defineStore('blog', () => {
+  const blogsCache = ref({}) // { pageNumber: [blogs] }
+  const loading = ref(false)
+  const error = ref(null)
 
-  actions: {
-    async fetchBlogs(page = 1, limit = 10) {
-      // Si ya tenemos los blogs en cache, devolverlos sin pedirlos de nuevo
-      if (this.blogsCache[page]) {
-        return this.blogsCache[page]
-      }
+  const fetchBlogs = async (page = 1, limit = 10) => {
+    if (blogsCache.value[page]) {
+      return blogsCache.value[page]
+    }
 
-      this.loading = true
-      this.error = null
+    loading.value = true
+    error.value = null
 
-      try {
-        const skip = (page - 1) * limit
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/blogs?skip=${skip}&limit=${limit}`,
-        )
+    try {
+      const skip = (page - 1) * limit
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/blogs?skip=${skip}&limit=${limit}`,
+      )
 
-        // Guardar en caché
-        this.blogsCache[page] = data.blogs
-        return data.blogs
-      } catch (err) {
-        this.error = 'No se pudieron cargar los blogs.'
-        console.error(err)
-      } finally {
-        this.loading = false
-      }
-    },
-  },
+      blogsCache.value[page] = data.blogs
+      return data.blogs
+    } catch (err) {
+      error.value = 'No se pudieron cargar los blogs.'
+      console.error(err)
+    } finally {
+      loading.value = false
+    }
+  }
+
+  return {
+    blogsCache,
+    loading,
+    error,
+    fetchBlogs,
+  }
 })
