@@ -14,12 +14,13 @@
         </div>
         <button
           class="bg-rose-300 hover:bg-rose-400 text-white px-8 py-4 rounded-lg font-medium transition-colors"
+          @click="$router.push('/blog')"
         >
           Lee mis publicaciones
         </button>
       </div>
 
-      <div class="flex justify-center lg:justify-end">
+      <div class="flex justify-center">
         <div class="w-80 h-96 bg-stone-200 rounded-3xl overflow-hidden">
           <img
             src="/images/foto-perfil.jpg"

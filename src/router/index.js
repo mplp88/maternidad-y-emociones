@@ -19,7 +19,21 @@ const router = createRouter({
       name: 'Blog',
       component: () => import('../pages/BlogView.vue'),
     },
-    { path: '/login', name: 'Login', component: () => import('../pages/LoginView.vue') },
+    {
+      path: '/blogs/new',
+      name: 'BlogNew',
+      component: () => import('../pages/BlogNewView.vue'),
+    },
+    {
+      path: '/blogs/edit/:id',
+      name: 'BlogEdit',
+      component: () => import('../pages/BlogEditView.vue'),
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import('../pages/LoginView.vue'),
+    },
     {
       path: '/dashboard',
       name: 'Dashboard',

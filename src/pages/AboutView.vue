@@ -17,10 +17,10 @@
       <!-- Texto -->
       <div class="text-gray-700 leading-relaxed">
         <p class="mb-4">
-          ¡Hola! Soy <span class="font-semibold">[Nombre]</span>, creadora de
-          <span class="italic">Maternidad y Emociones</span>. Mi pasión es acompañar a madres en su
-          camino, ofreciendo consejos, herramientas y contención emocional en cada etapa de la
-          maternidad.
+          ¡Hola! Soy <span class="font-semibold">{{ name }}</span
+          >, creadora de <span class="italic">Maternidad y Emociones</span>. Mi pasión es acompañar
+          a madres en su camino, ofreciendo consejos, herramientas y contención emocional en cada
+          etapa de la maternidad.
         </p>
         <p class="mb-4">
           Creo firmemente que hablar de nuestras emociones y compartir experiencias nos ayuda a
@@ -34,7 +34,8 @@
 </template>
 
 <script setup>
-// Si querés, podrías recibir datos dinámicos desde una API en el futuro
+import { usePageDataStore } from '@/stores/pageData'
+const { name } = usePageDataStore()
 </script>
 
 <style scoped>
