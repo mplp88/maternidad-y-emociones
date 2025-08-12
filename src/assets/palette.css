@@ -1,0 +1,71 @@
+:root {
+  --color-pink-light: #f4d6dc;
+  --color-pink-coral: #e89ca0;
+  --color-green-soft: #a8c3a0;
+  --color-green-olive: #6b8f71;
+  --color-cream: #f9f6f3;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-green-olive);
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--color-green-olive);
+}
+
+button,
+input[type='submit'] {
+  background: var(--color-pink-coral);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.2rem;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+button:hover,
+input[type='submit']:hover {
+  background: var(--color-pink-light);
+  color: var(--color-cream);
+}
+
+input,
+textarea,
+select {
+  border: 1px solid var(--color-green-soft);
+  border-radius: 4px;
+  padding: 0.5rem;
+  background: var(--color-cream);
+  color: var(--color-green-olive);
+}
+
+label {
+  color: var(--color-green-olive);
+  font-weight: bold;
+}
+
+.card {
+  background: var(--color-pink-light);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(232, 156, 160, 0.08);
+  padding: 1.5rem;
+  color: var(--color-green-olive);
+}
+
+.navbar,
+.header {
+  background: var(--color-green-soft);
+  color: var(--color-cream);
+}
+
+.footer {
+  background: var(--color-green-olive);
+  color: var(--color-cream);
+}

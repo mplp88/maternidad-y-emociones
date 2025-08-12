@@ -13,7 +13,7 @@
           </p>
         </div>
         <button
-          class="bg-rose-300 hover:bg-rose-400 text-white px-8 py-4 rounded-lg font-medium transition-colors"
+          class="bg-pink-soft-300 hover:bg-pink-soft-400 text-white px-8 py-4 rounded-lg font-medium transition-colors"
           @click="$router.push('/blog')"
         >
           Lee mis publicaciones
@@ -78,21 +78,4 @@ onMounted(async () => {
 
 <style>
 @import 'tailwindcss';
-
-body {
-  margin: 0;
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#app {
-  min-height: 100vh;
-}
-
-.router-link-active {
-  color: #f87171;
-}
 </style>

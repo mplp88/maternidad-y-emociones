@@ -5,6 +5,7 @@
     <div v-else>
       <h1 class="text-3xl font-bold text-blue-700 mb-4 text-center">{{ post.title }}</h1>
       <p class="text-gray-600 mb-6 text-center">{{ post.summary }}</p>
+      <img :src="post.imageUrl" alt="Imagen de la publicación" class="w-full h-auto mb-6" />
       <article
         class="prose prose-lg max-w-none text-gray-800 mb-8 post-content"
         v-html="post.content"

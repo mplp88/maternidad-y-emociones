@@ -3,8 +3,8 @@ import { ref, computed } from 'vue'
 import axios from 'axios'
 
 export const useAuthStore = defineStore('auth', () => {
-  const user = ref(null)
-  const token = ref(null)
+  const user = ref(JSON.parse(localStorage.getItem('user')) || null)
+  const token = ref(localStorage.getItem('authToken') || null)
 
   const isLoggedIn = computed(() => !!token.value)
 
@@ -17,8 +17,8 @@ export const useAuthStore = defineStore('auth', () => {
       user.value = data.user
       token.value = data.token
 
-      // Guardar token en localStorage para persistencia
       localStorage.setItem('authToken', token.value)
+      localStorage.setItem('user', JSON.stringify(user.value))
       return true
     } catch (error) {
       console.error('Error al iniciar sesión', error)
