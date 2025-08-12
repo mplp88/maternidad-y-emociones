@@ -16,8 +16,6 @@ const router = useRouter()
 
 const handleSubmit = async (postData) => {
   try {
-    console.log(postData)
-    alert('parate')
     await axios.post(`${import.meta.env.VITE_API_URL}/blogs`, postData, {
       headers: {
         'Content-Type': 'application/json',

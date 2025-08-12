@@ -41,7 +41,6 @@ const router = useRouter()
 const authStore = useAuthStore()
 
 onMounted(() => {
-  console.log(authStore.isLoggedIn)
   if (authStore.isLoggedIn) {
     router.push('/dashboard')
   }

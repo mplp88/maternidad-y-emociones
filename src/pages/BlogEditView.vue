@@ -22,7 +22,6 @@ const authStore = useAuthStore()
 onMounted(async () => {
   const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/blogs/${id}`)
   blog.value = data.blog
-  console.log(blog.value)
 })
 
 const handleSubmit = async (postData) => {

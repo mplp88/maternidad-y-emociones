@@ -17,8 +17,6 @@ export const useAuthStore = defineStore('auth', () => {
       user.value = data.user
       token.value = data.token
 
-      console.log('Usuario autenticado:', user.value)
-      alert(`Usuario autenticado: ${user.value.firstName} ${user.value.lastName}`)
       // Guardar token en localStorage para persistencia
       localStorage.setItem('authToken', token.value)
       return true

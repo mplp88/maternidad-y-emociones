@@ -69,7 +69,6 @@ const posts = ref([])
 onMounted(async () => {
   try {
     const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/blogs?limit=3`)
-    console.log('Blogs cargados:', data)
     posts.value = data.blogs
   } catch (error) {
     console.error('Error al cargar posts', error)
