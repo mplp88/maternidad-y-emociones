@@ -23,7 +23,7 @@
           {{ post.summary }}
         </p>
         <RouterLink :to="`/blog/${post._id}`" class="text-blue-500 hover:underline">
-          Leer más <FontAwesomeIcon :icon="byPrefixAndName.fas['faArrowRight']" class="mr-2" />
+          Leer más →
         </RouterLink>
       </article>
     </div>
@@ -46,7 +46,6 @@
 </template>
 
 <script setup>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { computed, ref, onMounted, watch } from 'vue'
 import { useBlogStore } from '../stores/blog'
 import { RouterLink } from 'vue-router'
