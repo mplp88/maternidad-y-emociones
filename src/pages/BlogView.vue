@@ -1,46 +1,125 @@
 <template>
-  <section class="max-w-4xl mx-auto px-6 py-12">
-    <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">Blog</h1>
-
-    <!-- Loader -->
-    <div v-if="loading" class="text-center text-gray-500">Cargando publicaciones...</div>
-
-    <!-- Lista de blogs -->
-    <div v-else class="space-y-6">
-      <div v-if="blogs.length === 0" class="text-center text-gray-500">
-        No hay publicaciones disponibles.
-      </div>
-      <article
-        v-else
-        v-for="post in blogs"
-        :key="post._id"
-        class="border rounded-lg p-6 shadow hover:shadow-lg transition"
-      >
-        <h2 class="text-xl font-semibold text-blue-600 mb-2">
-          {{ post.title }}
-        </h2>
-        <p class="text-gray-600 mb-4">
-          {{ post.summary }}
+  <section class="bg-cream min-h-screen py-10">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Header -->
+      <div class="text-center mb-6">
+        <h1 class="text-5xl lg:text-6xl font-bold text-green-olive mb-6">Blog</h1>
+        <p class="text-xl text-green-olive opacity-80 max-w-2xl mx-auto">
+          Reflexiones, consejos y herramientas para acompañarte en tu camino de maternidad
         </p>
-        <RouterLink :to="`/blog/${post._id}`" class="text-blue-500 hover:underline">
-          Leer más →
-        </RouterLink>
-      </article>
-    </div>
+        <div class="w-24 h-1 bg-pink-coral mx-auto rounded-full mt-6"></div>
+      </div>
 
-    <!-- Paginación -->
-    <div class="flex justify-center mt-8 gap-2" v-if="blogs.length >= 10">
-      <button
-        @click="prevPage"
-        :disabled="page === 1"
-        class="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
-      >
-        ← Anterior
-      </button>
-      <span class="px-4 py-2">{{ page }}</span>
-      <button @click="nextPage" :disabled="isLastPage" class="px-4 py-2 bg-gray-200 rounded">
-        Siguiente →
-      </button>
+      <!-- Loading State -->
+      <div v-if="loading" class="text-center py-20">
+        <div
+          class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-pink-coral"
+        ></div>
+        <p class="text-green-olive mt-4 text-lg">Cargando publicaciones...</p>
+      </div>
+
+      <!-- Blog Posts Grid -->
+      <div v-else class="space-y-8">
+        <div v-if="blogs.length === 0" class="text-center py-20">
+          <div
+            class="w-24 h-24 bg-pink-light rounded-full flex items-center justify-center mx-auto mb-6"
+          >
+            <span class="text-4xl">📝</span>
+          </div>
+          <h3 class="text-2xl font-bold text-green-olive mb-2">No hay publicaciones disponibles</h3>
+          <p class="text-green-olive opacity-80">Vuelve pronto para ver nuevo contenido</p>
+        </div>
+
+        <div v-else class="grid gap-8">
+          <article
+            v-for="(post, index) in blogs"
+            :key="post._id"
+            class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+            :class="index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'"
+          >
+            <div class="lg:flex">
+              <!-- Image placeholder -->
+              <div
+                class="lg:w-1/3 aspect-video lg:aspect-square bg-gradient-to-br from-pink-light to-green-soft flex items-center justify-center"
+              >
+                <span class="w-full h-full flex items-center justify-center">
+                  <img :src="post.imageUrl" alt="" />
+                </span>
+              </div>
+
+              <!-- Content -->
+              <div class="lg:w-2/3 px-8 flex flex-col justify-center">
+                <h2
+                  class="text-2xl lg:text-3xl font-bold text-green-olive mb-4 group-hover:text-pink-coral transition-colors duration-200"
+                >
+                  {{ post.title }}
+                </h2>
+                <p class="text-green-olive opacity-80 mb-6 text-lg leading-relaxed">
+                  {{ post.summary }}
+                </p>
+                <div class="flex items-center justify-between">
+                  <RouterLink
+                    :to="`/blog/${post._id}`"
+                    class="inline-flex items-center bg-pink-coral hover:bg-pink-light text-cream hover:text-green-olive px-6 py-3 rounded-xl font-semibold transition-all duration-300 group-hover:translate-x-1"
+                  >
+                    Leer más
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      ></path>
+                    </svg>
+                  </RouterLink>
+                  <time class="text-green-olive opacity-60 font-medium">{{ post.date }}</time>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="flex justify-center mt-16" v-if="blogs.length >= 10">
+        <div class="flex items-center space-x-4">
+          <button
+            @click="prevPage"
+            :disabled="page === 1"
+            class="flex items-center px-6 py-3 bg-white border-2 border-green-soft text-green-olive rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-green-soft hover:text-cream transition-all duration-200"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+            Anterior
+          </button>
+
+          <span class="px-6 py-3 bg-pink-coral text-cream rounded-xl font-bold text-lg">{{
+            page
+          }}</span>
+
+          <button
+            @click="nextPage"
+            :disabled="isLastPage"
+            class="flex items-center px-6 py-3 bg-white border-2 border-green-soft text-green-olive rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-green-soft hover:text-cream transition-all duration-200"
+          >
+            Siguiente
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -64,9 +143,13 @@ const loadPage = async () => {
   isLastPage.value = result.length < 10
 }
 
-onMounted(loadPage)
+onMounted(() => {
+  loadPage()
+})
 
-watch(page, loadPage)
+watch(page, () => {
+  loadPage()
+})
 
 const nextPage = () => {
   if (!isLastPage.value) page.value++
