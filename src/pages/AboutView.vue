@@ -1,22 +1,9 @@
 <template>
   <section class="bg-cream min-h-screen py-10">
-    <div v-if="underConstruction" class="text-center py-20">
-      <h2 class="text-2xl font-bold text-green-olive">Sitio en construcción</h2>
-      <p class="text-green-olive">Estamos trabajando para mejorar tu experiencia.</p>
-      <p class="text-green-olive text-2xl py-2">
-        <a
-          href="https://www.instagram.com/maternidadyemociones.cp/"
-          target="_blank"
-          class="text-pink-coral"
-          >Mientras tanto, podés seguirme en <i class="fa-brands fa-instagram"></i> Instagram como
-          @maternidadyemociones.cp</a
-        >
-      </p>
-    </div>
-    <div class="max-w-6xl mx-auto px-6" v-else>
+    <div class="max-w-6xl mx-auto px-6">
       <!-- Header -->
       <div class="text-center mb-10">
-        <h1 class="text-5xl lg:text-6xl font-bold text-green-olive">Sobre mí</h1>
+        <h1 class="text-5xl lg:text-6xl font-bold text-green-olive mb-6">Sobre mí</h1>
         <div class="w-24 h-1 bg-pink-coral mx-auto rounded-full"></div>
       </div>
 
@@ -49,19 +36,27 @@
           <div class="bg-white rounded-2xl p-8 shadow-xl">
             <p class="text-lg text-green-olive leading-relaxed mb-6">
               ¡Hola! Soy <span class="font-bold text-pink-coral text-xl">{{ name }}</span
-              >, creadora de <span class="italic font-semibold">Maternidad y Emociones</span>. Mi
-              pasión es acompañar a madres en su camino, ofreciendo consejos, herramientas y
-              contención emocional en cada etapa de la maternidad.
+              >, creadora de <span class="italic font-semibold">Maternidad y Emociones</span>.
+              Durante muchos años cursé el profesorado de Nivel Inicial, pero, por circunstancias de
+              la vida, justo antes de recibirme tuve que dejarlo. Más adelante estudié
+              Psicopedagogía, Psicología y Puericultura, aunque nuevamente la falta de una red de
+              apoyo sólida me llevó a priorizar lo más importante: estar presente para mi hijo.
             </p>
             <p class="text-lg text-green-olive leading-relaxed mb-6">
-              Creo firmemente que hablar de nuestras emociones y compartir experiencias nos ayuda a
-              crecer como personas y como familias. En este espacio, encontrarás reflexiones,
-              consejos prácticos y palabras de aliento para esos momentos en los que más lo
-              necesitamos.
+              Lejos de rendirme, esas experiencias me hicieron ver con claridad las carencias que
+              existen a la hora de acompañar a las díadas mamá-bebé, y la falta de información que
+              todavía hay sobre el desarrollo infantil. Fue así como decidí formarme como doula y
+              realizar una Diplomatura en Psicología Perinatal, para poder acompañar a mujeres y
+              familias no solo en la decisión de tener un bebé, sino también en todo el proceso: la
+              gestación en sus distintas etapas, el puerperio, los duelos, la sexualidad después de
+              la maternidad/paternidad, y más.
             </p>
-            <p class="text-lg text-green-olive leading-relaxed font-medium">
-              Gracias por estar acá y permitirme ser parte de tu camino
-              <span class="text-2xl">💛</span>
+            <p class="text-lg text-green-olive leading-relaxed">
+              Hoy, mi formación docente se complementa con mi labor como doula, para sostener a las
+              familias que sienten que “están haciendo todo mal” y recordarles que, en realidad,
+              están haciendo lo mejor que pueden con las herramientas que tienen. Mi misión es
+              acompañar, escuchar sin juicios y ser parte de esa red que tantas veces necesitamos
+              para criar en paz.
             </p>
           </div>
         </div>
@@ -73,34 +68,50 @@
           <div
             class="w-16 h-16 bg-pink-light rounded-full flex items-center justify-center mx-auto mb-4"
           >
-            <span class="text-2xl">🤱</span>
-          </div>
-          <h3 class="text-xl font-bold text-green-olive mb-2">Maternidad</h3>
-          <p class="text-green-olive opacity-80">
-            Acompañamiento en cada etapa del camino maternal
-          </p>
-        </div>
-
-        <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
-          <div
-            class="w-16 h-16 bg-green-soft rounded-full flex items-center justify-center mx-auto mb-4"
-          >
-            <span class="text-2xl">💚</span>
-          </div>
-          <h3 class="text-xl font-bold text-green-olive mb-2">Emociones</h3>
-          <p class="text-green-olive opacity-80">
-            Herramientas para gestionar y comprender tus emociones
-          </p>
-        </div>
-
-        <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
-          <div
-            class="w-16 h-16 bg-pink-coral rounded-full flex items-center justify-center mx-auto mb-4"
-          >
             <span class="text-2xl">🌱</span>
           </div>
-          <h3 class="text-xl font-bold text-green-olive mb-2">Crecimiento</h3>
-          <p class="text-green-olive opacity-80">Desarrollo personal y familiar en armonía</p>
+          <h3 class="text-xl font-bold text-green-olive mb-2">Misión</h3>
+          <p class="text-green-olive opacity-80">
+            A través de mis palabras acompañar a mujeres y familias en las distintas etapas de la
+            maternidad y la crianza, brindando apoyo emocional, contención y herramientas prácticas.
+            Ser una presencia que escuche sin juicios y ayude a transitar gestaciones, puerperios,
+            duelos y desafíos cotidianos con confianza y calma.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+          <div
+            class="w-16 h-16 bg-pink-light rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <span class="text-2xl">🌟</span>
+          </div>
+          <h3 class="text-xl font-bold text-green-olive mb-2">Visión</h3>
+          <p class="text-green-olive opacity-80">
+            Contribuir a una sociedad más empática y consciente, donde la maternidad y la crianza
+            sean experiencias sostenidas por una red de apoyo sólida, respetuosa y amorosa. Inspirar
+            un cambio cultural en el que criar no sea tarea exclusiva de la madre o el padre, sino
+            de toda la comunidad.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+          <div
+            class="w-16 h-16 bg-pink-light rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <span class="text-2xl">💗</span>
+          </div>
+          <h3 class="text-xl font-bold text-green-olive mb-2">Valores</h3>
+          <p class="text-green-olive opacity-80">
+            <span class="font-bold">Empatía:</span> Escuchar y acompañar desde el respeto, sin
+            juicios.<br />
+            <span class="font-bold">Respeto por la diversidad:</span> Cada familia, madre y niño son
+            únicos; sus caminos también.<br />
+            <span class="font-bold">Acompañamiento consciente:</span> Presencia real, conexión
+            emocional y sostén en momentos clave.<br />
+            <span class="font-bold">Confianza:</span> Creer en las capacidades y decisiones de las
+            familias.<br />
+            <span class="font-bold">Amor:</span> El motor principal de cada palabra, acción y gesto.
+          </p>
         </div>
       </div>
     </div>
@@ -108,9 +119,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { usePageDataStore } from '@/stores/pageData'
 const name = usePageDataStore().name
-
-const underConstruction = ref(true)
 </script>
