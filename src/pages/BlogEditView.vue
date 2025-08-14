@@ -30,14 +30,22 @@ onMounted(async () => {
 
 const handleSubmit = async (postData) => {
   try {
-    await axios.put(`${import.meta.env.VITE_API_URL}/blogs/${id}`, postData, {
+    const response = await axios.put(`${import.meta.env.VITE_API_URL}/blogs/${id}`, postData, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${authStore.token}`,
       },
     })
+
+    console.log(response.status)
     router.push('/dashboard')
   } catch (error) {
+    if (error.response && error.response.status === 403) {
+      authStore.logout()
+      router.push('/login')
+      return
+    }
+
     console.error('Error al actualizar el post:', error)
   }
 }

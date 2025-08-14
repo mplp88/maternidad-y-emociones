@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+/* Define tokens de diseño (v4) */
+@theme {
+  /* Colores */
+  --color-pink-light: #f4d6dc;
+  --color-pink-coral: #e89ca0;
+  --color-green-soft: #a8c3a0;
+  --color-green-olive: #6b8f71;
+  --color-cream: #f9f6f3;
+
+  /* Tipografías (opcional) */
+  --font-sans: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+
+  /* Radios (opcional) */
+  --radius: 0.75rem;
+}

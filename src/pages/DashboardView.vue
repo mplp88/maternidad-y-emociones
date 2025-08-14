@@ -101,7 +101,7 @@
                     </RouterLink>
                     <RouterLink
                       :to="`/dashboard/blog/edit/${post._id}`"
-                      class="inline-flex items-center bg-pink-light hover:bg-pink-coral text-green-olive hover:text-cream font-semibold px-4 py-2 rounded-lg transition-all duration-200"
+                      class="inline-flex items-center bg-green-soft hover:bg-green-olive text-green-olive hover:text-cream font-semibold px-4 py-2 rounded-lg transition-all duration-200"
                       title="Editar publicación"
                     >
                       <i class="fa-solid fa-pen-to-square"></i>

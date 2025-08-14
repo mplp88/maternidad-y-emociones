@@ -26,7 +26,7 @@
       <article v-else class="bg-white rounded-2xl shadow-xl overflow-hidden">
         <!-- Header Image -->
         <div
-          class="aspect-video bg-gradient-to-br from-pink-light to-green-soft flex items-center justify-center"
+          class="aspect-square bg-gradient-to-br from-pink-light to-green-soft flex items-center justify-center"
         >
           <img
             v-if="post.imageUrl"
@@ -63,7 +63,7 @@
         </div>
 
         <!-- Article Footer -->
-        <footer class="p-8 lg:p-12 bg-pink-light border-t border-green-soft">
+        <footer class="p-8 lg:p-12 border-t border-green-soft">
           <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
             <RouterLink
               to="/blog"
