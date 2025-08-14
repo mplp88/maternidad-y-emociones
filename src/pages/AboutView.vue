@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gradient-to-br from-cream via-pink-light to-cream min-h-screen py-10">
+  <section class="bg-cream min-h-screen py-10">
     <div v-if="underConstruction" class="text-center py-20">
       <h2 class="text-2xl font-bold text-green-olive">Sitio en construcción</h2>
       <p class="text-green-olive">Estamos trabajando para mejorar tu experiencia.</p>

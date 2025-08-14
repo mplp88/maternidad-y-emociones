@@ -40,17 +40,15 @@
             <div class="lg:flex">
               <!-- Image placeholder -->
               <div
-                class="lg:w-1/3 aspect-video lg:aspect-square bg-gradient-to-br from-pink-light to-green-soft flex items-center justify-center"
+                class="lg:w-1/3 aspect-square lg:aspect-auto lg:h-64 bg-gradient-to-br from-pink-light to-green-soft flex items-center justify-center overflow-hidden"
               >
-                <span class="w-full h-full flex items-center justify-center">
-                  <img :src="post.imageUrl" alt="" />
-                </span>
+                <img :src="post.imageUrl" alt="" class="w-full h-full object-cover" />
               </div>
 
               <!-- Content -->
-              <div class="lg:w-2/3 px-8 flex flex-col justify-center">
+              <div class="lg:w-2/3 px-8 pt-5 flex flex-col justify-center">
                 <h2
-                  class="text-2xl lg:text-3xl font-bold text-green-olive mb-4 group-hover:text-pink-coral transition-colors duration-200"
+                  class="text-2xl lg:text-3xl font-bold text-green-olive mb-4 transition-colors duration-200"
                 >
                   {{ post.title }}
                 </h2>
@@ -72,7 +70,9 @@
                       ></path>
                     </svg>
                   </RouterLink>
-                  <time class="text-green-olive opacity-60 font-medium">{{ post.date }}</time>
+                  <time class="text-green-olive opacity-60 font-medium">{{
+                    formatDate(post.createdAt)
+                  }}</time>
                 </div>
               </div>
             </div>
@@ -128,8 +128,10 @@
 import { computed, ref, onMounted, watch } from 'vue'
 import { useBlogStore } from '../stores/blog'
 import { RouterLink } from 'vue-router'
+import { useFormatDate } from '@/composables/useFormatDate'
 
 const blogStore = useBlogStore()
+const { formatDate } = useFormatDate()
 
 const page = ref(1)
 const blogs = ref([])

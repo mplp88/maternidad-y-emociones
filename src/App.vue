@@ -15,6 +15,5 @@ import NavBar from './components/NavBar.vue'
 </script>
 
 <style>
-@import 'tailwindcss';
-@import './assets/palette.css';
+@import './assets/base.css';
 </style>

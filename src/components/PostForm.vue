@@ -1,53 +1,84 @@
 <template>
-  <form @submit.prevent="handleSubmit" class="post-form">
-    <div class="form-group">
-      <label for="title">Título:</label>
+  <form
+    @submit.prevent="handleSubmit"
+    class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-lg space-y-6"
+  >
+    <!-- Título -->
+    <div class="space-y-2">
+      <label for="title" class="block text-lg font-semibold text-green-olive"> Título: </label>
       <input
         id="title"
         v-model="formData.title"
         type="text"
         required
         placeholder="Ingrese el título"
+        class="w-full border border-green-soft rounded-lg px-4 py-2 focus:ring-2 focus:ring-pink-coral focus:outline-none"
       />
     </div>
 
-    <div class="form-group">
-      <label for="image">Imagen:</label>
-      <input type="file" @change="onFileChange" />
-      <div v-if="formData.imageUrl" class="image-preview">
-        <img :src="formData.imageUrl" alt="Preview" />
+    <!-- Imagen -->
+    <div class="space-y-2">
+      <label for="image" class="block text-lg font-semibold text-green-olive"> Imagen: </label>
+      <input
+        type="file"
+        @change="onFileChange"
+        class="w-full text-sm text-green-olive file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-coral file:text-white hover:file:bg-pink-light hover:file:text-green-olive"
+      />
+      <div v-if="formData.imageUrl" class="mt-3">
+        <img
+          :src="formData.imageUrl"
+          alt="Preview"
+          class="w-40 h-40 object-cover rounded-lg shadow"
+        />
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="summary">Resumen:</label>
+    <!-- Resumen -->
+    <div class="space-y-2">
+      <label for="summary" class="block text-lg font-semibold text-green-olive"> Resumen: </label>
       <input
         id="summary"
         v-model="formData.summary"
         type="text"
         required
         placeholder="Ingrese el resumen"
+        class="w-full border border-green-soft rounded-lg px-4 py-2 focus:ring-2 focus:ring-pink-coral focus:outline-none"
       />
     </div>
 
-    <div class="form-group">
-      <label for="content">Contenido:</label>
+    <!-- Contenido -->
+    <div class="space-y-2">
+      <label for="content" class="block text-lg font-semibold text-green-olive"> Contenido: </label>
       <textarea
         id="content"
         v-model="formData.content"
         required
         placeholder="Ingrese el contenido"
+        class="w-full border border-green-soft rounded-lg px-4 py-2 h-40 resize-none focus:ring-2 focus:ring-pink-coral focus:outline-none"
       ></textarea>
     </div>
 
-    <div class="form-group">
-      <label for="author">Autor:</label>
-      <span class="author">{{ author }}</span>
+    <!-- Autor -->
+    <div class="space-y-2">
+      <label for="author" class="block text-lg font-semibold text-green-olive"> Autor: </label>
+      <span class="block py-2 text-green-olive font-bold rounded-lg">
+        {{ author }}
+      </span>
     </div>
 
-    <div class="form-actions">
-      <button type="button" @click="$emit('cancel')">Cancelar</button>
-      <button type="submit">
+    <!-- Botones -->
+    <div class="flex flex-wrap gap-4 justify-end">
+      <button
+        type="button"
+        @click="$emit('cancel')"
+        class="inline-flex items-center justify-center gap-2 bg-green-olive hover:bg-green-soft text-cream hover:text-green-olive font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
+      >
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        class="inline-flex items-center justify-center gap-2 bg-pink-coral hover:bg-pink-light text-cream hover:text-green-olive font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
+      >
         {{ mode === 'edit' ? 'Actualizar Post' : 'Crear Post' }}
       </button>
     </div>
@@ -131,84 +162,3 @@ async function handleSubmit() {
   emit('submit', { ...formData })
 }
 </script>
-
-<style scoped>
-@import '../assets/palette.css';
-
-.post-form {
-  background: var(--color-cream);
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 2px 16px rgba(168, 195, 160, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-label {
-  font-weight: bold;
-  color: var(--color-green-olive);
-}
-
-input,
-textarea {
-  padding: 0.7rem;
-  font-size: 1rem;
-  border: 1px solid var(--color-green-soft);
-  border-radius: 6px;
-  background: var(--color-cream);
-  color: var(--color-green-olive);
-}
-
-textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.image-preview {
-  margin-top: 0.5rem;
-}
-.image-preview img {
-  max-width: 180px;
-  max-height: 180px;
-  border-radius: 1rem;
-  border: 2px solid var(--color-pink-coral);
-  object-fit: cover;
-  background: var(--color-pink-light);
-}
-
-.author {
-  color: var(--color-green-olive);
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-button {
-  padding: 0.8rem 2rem;
-  background: var(--color-pink-coral);
-  border: none;
-  color: white;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: background 0.2s;
-}
-button:hover {
-  background: var(--color-pink-light);
-  color: var(--color-green-olive);
-}
-</style>
