@@ -11,7 +11,7 @@
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <!-- Photo Section -->
         <div class="flex justify-center lg:justify-center">
-          <div class="relative flex flex-col items-center gap-4 p-6">
+          <div class="relative flex flex-col items-center gap-4 lg:p-6">
             <div
               class="w-80 h-80 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-8 border-white mb-2"
             >
