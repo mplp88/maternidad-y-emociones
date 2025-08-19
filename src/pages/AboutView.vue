@@ -11,9 +11,9 @@
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <!-- Photo Section -->
         <div class="flex justify-center lg:justify-center">
-          <div class="relative">
+          <div class="relative flex flex-col items-center gap-4 p-6">
             <div
-              class="w-80 h-80 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-8 border-white"
+              class="w-80 h-80 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl border-8 border-white mb-2"
             >
               <img
                 src="https://res.cloudinary.com/djwpqblr0/image/upload/v1755056434/foto-perfil_c0vgrs.jpg"
@@ -21,6 +21,21 @@
                 class="w-full h-full object-cover"
               />
             </div>
+
+            <!-- Social Icons -->
+            <div class="flex gap-6 text-4xl p-6">
+              <a
+                v-for="link in socialLinks"
+                :key="link.name"
+                :href="link.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 hover:text-pink-coral transition-colors"
+              >
+                <i class="fab fa-lg" :class="`fa-${link.icon}`"></i>
+              </a>
+            </div>
+
             <!-- Decorative elements -->
             <div
               class="absolute -top-4 -right-4 w-20 h-20 bg-green-soft rounded-full opacity-60 animate-pulse"
@@ -121,4 +136,22 @@
 <script setup>
 import { usePageDataStore } from '@/stores/pageData'
 const name = usePageDataStore().name
+
+const socialLinks = [
+  {
+    name: 'Facebook',
+    url: 'https://www.facebook.com/maternidadyemociones.cp',
+    icon: 'facebook',
+  },
+  {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/maternidadyemociones.cp',
+    icon: 'instagram',
+  },
+  // { --- NO EXISTE TODAVIA ---
+  //   name: 'X',
+  //   url: 'https://www.x.com/maternidadyemociones.cp',
+  //   icon: 'x-twitter',
+  // },
+]
 </script>
