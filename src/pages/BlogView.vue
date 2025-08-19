@@ -34,7 +34,7 @@
           <article
             v-for="(post, index) in blogs"
             :key="post._id"
-            class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+            class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden pb-3"
             :class="index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'"
           >
             <div class="lg:flex">
