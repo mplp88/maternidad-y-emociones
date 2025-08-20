@@ -33,12 +33,15 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
+import { useToast } from '@/composables/useToast'
 
 const username = ref('')
 const password = ref('')
 const errorMessage = ref('')
 const router = useRouter()
 const authStore = useAuthStore()
+
+const { showToast } = useToast()
 
 onMounted(() => {
   if (authStore.isLoggedIn) {
@@ -49,6 +52,7 @@ onMounted(() => {
 const handleLogin = async () => {
   const success = await authStore.login(username.value, password.value)
   if (success) {
+    showToast('Login exitoso', 'success')
     router.push('/dashboard')
   } else {
     errorMessage.value = 'Credenciales incorrectas'

@@ -126,6 +126,7 @@ watch(
       formData.image = newPost.image || ''
       formData.imageUrl = newPost.imageUrl || ''
       formData.author = newPost.author || author.value
+      formData.slug = newPost.slug || ''
     }
   },
   { immediate: true },
