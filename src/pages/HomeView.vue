@@ -66,7 +66,7 @@
         <RouterLink
           v-for="post in posts"
           :key="post._id"
-          :to="`/blog/${post._id}`"
+          :to="`/blog/${post.slug}`"
           class="group block bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2"
         >
           <div class="aspect-video bg-gradient-to-br from-pink-light to-green-soft">
