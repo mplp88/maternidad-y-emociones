@@ -15,9 +15,11 @@ import PostForm from '../components/PostForm.vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
+import { useToast } from '@/composables/useToast'
 
 const authStore = useAuthStore()
 const router = useRouter()
+const { showToast } = useToast()
 
 const handleSubmit = async (postData) => {
   try {
@@ -29,12 +31,15 @@ const handleSubmit = async (postData) => {
     })
 
     if (response.status == 403) {
+      showToast('Tenés que volver a ingresar', 'error')
       router.push('/login')
     }
 
     // Redirigir a dashboard
+    showToast('Publicación creada', 'success')
     router.push('/dashboard')
   } catch (error) {
+    showToast('Ocurrió un error', 'error')
     console.error('Error al crear el post:', error)
   }
 }

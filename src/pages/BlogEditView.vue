@@ -16,21 +16,24 @@ import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
 import { useAuthStore } from '../stores/auth'
+import { useToast } from '@/composables/useToast'
 
 const route = useRoute()
-const id = route.params.id
+const slug = route.params.slug
 const blog = ref({})
 const router = useRouter()
 const authStore = useAuthStore()
+const { showToast } = useToast()
 
 onMounted(async () => {
-  const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/blogs/${id}`)
+  const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/blogs/${slug}`)
   blog.value = data.blog
 })
 
 const handleSubmit = async (postData) => {
   try {
-    const response = await axios.put(`${import.meta.env.VITE_API_URL}/blogs/${id}`, postData, {
+    console.log(postData)
+    const response = await axios.put(`${import.meta.env.VITE_API_URL}/blogs/${slug}`, postData, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${authStore.token}`,
@@ -38,6 +41,7 @@ const handleSubmit = async (postData) => {
     })
 
     console.log(response.status)
+    showToast('Publicación actualizada', 'success')
     router.push('/dashboard')
   } catch (error) {
     if (error.response && error.response.status === 403) {

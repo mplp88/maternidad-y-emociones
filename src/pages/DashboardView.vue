@@ -25,6 +25,10 @@
               Cerrar sesión
             </button>
           </div>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button @click="successToast">Test Success</button>
+            <button @click="errorToast">Test Error</button>
+          </div>
         </div>
       </div>
 
@@ -93,14 +97,14 @@
                 <td class="px-6 py-4">
                   <div class="flex items-center justify-center space-x-3">
                     <RouterLink
-                      :to="`/blog/${post._id}`"
+                      :to="`/blog/${post.slug}`"
                       class="inline-flex items-center bg-green-soft hover:bg-green-olive text-green-olive hover:text-cream font-semibold px-4 py-2 rounded-lg transition-all duration-200"
                       title="Ver publicación"
                     >
                       <i class="fa-solid fa-eye"></i>
                     </RouterLink>
                     <RouterLink
-                      :to="`/dashboard/blog/edit/${post._id}`"
+                      :to="`/dashboard/blog/edit/${post.slug}`"
                       class="inline-flex items-center bg-green-soft hover:bg-green-olive text-green-olive hover:text-cream font-semibold px-4 py-2 rounded-lg transition-all duration-200"
                       title="Editar publicación"
                     >
@@ -130,12 +134,14 @@ import axios from 'axios'
 import { useAuthStore } from '../stores/auth'
 import { useRouter } from 'vue-router'
 import { useFormatDate } from '@/composables/useFormatDate'
+import { useToast } from '@/composables/useToast'
 
 const blogs = ref([])
 const loading = ref(true)
 const authStore = useAuthStore()
 const router = useRouter()
 const { formatDate } = useFormatDate()
+const { showToast } = useToast()
 
 const deletePost = async (postId) => {
   try {
@@ -156,6 +162,14 @@ const deletePost = async (postId) => {
 const logout = () => {
   authStore.logout()
   router.push('/login')
+}
+
+const successToast = () => {
+  showToast('Operación exitosa', 'success')
+}
+
+const errorToast = () => {
+  showToast('Error en la operación', 'error')
 }
 
 onMounted(async () => {

@@ -57,7 +57,7 @@
                 </p>
                 <div class="flex items-center justify-between">
                   <RouterLink
-                    :to="`/blog/${post._id}`"
+                    :to="`/blog/${post.slug}`"
                     class="inline-flex items-center bg-pink-coral hover:bg-pink-light text-cream hover:text-green-olive px-6 py-3 rounded-xl font-semibold transition-all duration-300 group-hover:translate-x-1"
                   >
                     Leer más

@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import('../pages/BlogView.vue'),
     },
     {
-      path: '/blog/:id',
+      path: '/blog/:slug',
       name: 'BlogDetail',
       component: () => import('../pages/BlogDetailView.vue'),
     },
@@ -31,7 +31,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/dashboard/blog/edit/:id',
+      path: '/dashboard/blog/edit/:slug',
       name: 'BlogEdit',
       component: () => import('../pages/BlogEditView.vue'),
       meta: { requiresAuth: true },

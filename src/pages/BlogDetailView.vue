@@ -111,17 +111,33 @@ import { useRoute } from 'vue-router'
 import axios from 'axios'
 import { useFormatDate } from '../composables/useFormatDate'
 import { useHead } from '@vueuse/head'
+import { useToast } from '@/composables/useToast'
 
 const route = useRoute()
 const post = ref({})
 const loading = ref(true)
 const errorMessage = ref('')
 const { formatDate } = useFormatDate()
+const showToast = useToast()
 
 const showShare = ref(false)
 
 function toggleShare() {
-  showShare.value = !showShare.value
+  if (navigator.share) {
+    navigator
+      .share({
+        title: post.value.title,
+        text: post.value.excerpt,
+        url: window.location.href,
+      })
+      .then(() => showToast('Compartido con éxito', 'success'))
+      .catch((err) => {
+        showToast('Ocurrió un error al compartir', 'error')
+        console.error('Error al compartir:', err)
+      })
+  } else {
+    showShare.value = !showShare.value
+  }
 }
 
 // Acciones de compartir
@@ -156,7 +172,7 @@ function shareTwitter() {
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/blogs/${route.params.id}`)
+    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/blogs/${route.params.slug}`)
     post.value = data.blog
     if (!post.value) {
       errorMessage.value = 'Publicación no encontrada.'
