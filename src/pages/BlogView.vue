@@ -34,19 +34,19 @@
           <article
             v-for="(post, index) in blogs"
             :key="post._id"
-            class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden pb-3"
+            class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden pb-3 lg:pb-0"
             :class="index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'"
           >
             <div class="lg:flex">
               <!-- Image placeholder -->
               <div
-                class="lg:w-1/3 aspect-square lg:aspect-auto lg:h-64 bg-gradient-to-br from-pink-light to-green-soft flex items-center justify-center overflow-hidden"
+                class="aspect-square bg-gradient-to-br from-pink-light to-green-soft flex items-center justify-center overflow-hidden lg:max-h-[250px]"
               >
                 <img :src="post.imageUrl" alt="" class="w-full h-full object-cover" />
               </div>
 
               <!-- Content -->
-              <div class="lg:w-2/3 px-8 pt-5 flex flex-col justify-center">
+              <div class="px-6 lg:px-12 pt-5 flex flex-col justify-center">
                 <h2
                   class="text-2xl lg:text-3xl font-bold text-green-olive mb-4 transition-colors duration-200"
                 >
