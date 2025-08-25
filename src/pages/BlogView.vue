@@ -42,7 +42,7 @@
               <div
                 class="aspect-square bg-gradient-to-br from-pink-light to-green-soft flex items-center justify-center overflow-hidden lg:max-h-[250px]"
               >
-                <img :src="post.imageUrl" alt="" class="w-full h-full object-cover" />
+                <img :src="post.imageUrls[0]" alt="" class="w-full h-full object-cover" />
               </div>
 
               <!-- Content -->

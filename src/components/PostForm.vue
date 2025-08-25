@@ -16,21 +16,36 @@
       />
     </div>
 
-    <!-- Imagen -->
+    <!-- Imágenes -->
     <div class="space-y-2">
-      <label for="image" class="block text-lg font-semibold text-green-olive"> Imagen: </label>
-      <input
-        type="file"
-        @change="onFileChange"
-        class="w-full text-sm text-green-olive file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-coral file:text-white hover:file:bg-pink-light hover:file:text-green-olive"
-      />
-      <div v-if="formData.imageUrl" class="mt-3">
+      <label class="block text-lg font-semibold text-green-olive"> Imágenes: </label>
+      <div v-for="(image, index) in formData.images" :key="index" class="mb-2">
+        <input
+          type="file"
+          @change="handleChange($event, index)"
+          class="w-full text-sm text-green-olive file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-coral file:text-white hover:file:bg-pink-light hover:file:text-green-olive mb-2"
+        />
         <img
-          :src="formData.imageUrl"
+          v-if="formData.imageUrls[index]"
+          :src="formData.imageUrls[index]"
           alt="Preview"
           class="w-40 h-40 object-cover rounded-lg shadow"
         />
+        <button
+          type="button"
+          @click="removeImage(index)"
+          class="inline-flex items-center justify-center gap-2 bg-green-olive hover:bg-green-soft text-cream hover:text-green-olive font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
+        >
+          Eliminar
+        </button>
       </div>
+      <button
+        type="button"
+        @click="addImage"
+        class="inline-flex items-center justify-center gap-2 bg-pink-coral hover:bg-pink-light text-cream hover:text-green-olive font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
+      >
+        {{ formData.images.length > 1 ? 'Agregar otra imagen' : 'Agregar imagen' }}
+      </button>
     </div>
 
     <!-- Resumen -->
@@ -110,8 +125,8 @@ const formData = reactive({
   title: '',
   content: '',
   summary: '',
-  image: null,
-  imageUrl: '',
+  images: [null],
+  imageUrls: [],
   author: author.value,
 })
 
@@ -123,8 +138,8 @@ watch(
       formData.title = newPost.title || ''
       formData.summary = newPost.summary || ''
       formData.content = newPost.content || ''
-      formData.image = newPost.image || ''
-      formData.imageUrl = newPost.imageUrl || ''
+      formData.images = newPost.images || [null]
+      formData.imageUrls = newPost.imageUrls || []
       formData.author = newPost.author || author.value
       formData.slug = newPost.slug || ''
     }
@@ -132,14 +147,17 @@ watch(
   { immediate: true },
 )
 
-function onFileChange(e) {
-  const file = e.target.files[0]
-  formData.image = file
-  if (file) {
-    formData.imageUrl = URL.createObjectURL(file)
-  } else {
-    formData.imageUrl = ''
-  }
+const addImage = () => {
+  formData.images.push(null)
+}
+
+const removeImage = (index) => {
+  formData.images.splice(index, 1)
+}
+
+const handleChange = (event, index) => {
+  formData.images[index] = event.target.files[0]
+  formData.imageUrls = formData.images.map((file) => URL.createObjectURL(file))
 }
 
 async function uploadImage(image) {
@@ -157,8 +175,9 @@ async function uploadImage(image) {
 }
 
 async function handleSubmit() {
-  if (formData.image) {
-    formData.imageUrl = await uploadImage(formData.image)
+  if (formData.images.length) {
+    const uploadPromises = formData.images.map((image) => uploadImage(image))
+    formData.imageUrls = await Promise.all(uploadPromises)
   }
   emit('submit', { ...formData })
 }

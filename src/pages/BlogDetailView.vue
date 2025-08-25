@@ -25,17 +25,7 @@
       <!-- Article Content -->
       <article v-else class="bg-white rounded-2xl shadow-xl overflow-hidden">
         <!-- Header Image -->
-        <div
-          class="aspect-square bg-gradient-to-br from-pink-light to-green-soft flex items-center justify-center"
-        >
-          <img
-            v-if="post.imageUrl"
-            :src="post.imageUrl"
-            :alt="post.title"
-            class="w-full h-full object-cover"
-          />
-          <span v-else class="text-8xl opacity-60">📖</span>
-        </div>
+        <PostImage :images="post.imageUrls" />
 
         <!-- Article Header -->
         <header class="p-8 lg:p-12 border-b border-green-soft">
@@ -112,6 +102,7 @@ import axios from 'axios'
 import { useFormatDate } from '../composables/useFormatDate'
 import { useHead } from '@vueuse/head'
 import { useToast } from '@/composables/useToast'
+import PostImage from '@/components/PostImage.vue'
 
 const route = useRoute()
 const post = ref({})

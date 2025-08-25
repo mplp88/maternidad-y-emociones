@@ -25,10 +25,6 @@
               Cerrar sesión
             </button>
           </div>
-          <div class="flex flex-col sm:flex-row gap-4">
-            <button @click="successToast">Test Success</button>
-            <button @click="errorToast">Test Error</button>
-          </div>
         </div>
       </div>
 
@@ -134,14 +130,12 @@ import axios from 'axios'
 import { useAuthStore } from '../stores/auth'
 import { useRouter } from 'vue-router'
 import { useFormatDate } from '@/composables/useFormatDate'
-import { useToast } from '@/composables/useToast'
 
 const blogs = ref([])
 const loading = ref(true)
 const authStore = useAuthStore()
 const router = useRouter()
 const { formatDate } = useFormatDate()
-const { showToast } = useToast()
 
 const deletePost = async (postId) => {
   try {
@@ -164,16 +158,7 @@ const logout = () => {
   router.push('/login')
 }
 
-const successToast = () => {
-  showToast('Operación exitosa', 'success')
-}
-
-const errorToast = () => {
-  showToast('Error en la operación', 'error')
-}
-
 onMounted(async () => {
-  // Verifica autenticación
   if (!authStore.isLoggedIn || !authStore.token) {
     router.push('/')
     return
