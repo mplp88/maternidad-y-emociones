@@ -70,7 +70,7 @@
           class="group block bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2"
         >
           <div class="aspect-video bg-gradient-to-br from-pink-light to-green-soft">
-            <img :src="post.imageUrl" alt="Post image" class="w-full h-full object-cover" />
+            <img :src="post.imageUrls[0]" alt="Post image" class="w-full h-full object-cover" />
           </div>
           <div class="p-6">
             <h4 class="text-xl font-bold text-green-olive mb-3">
