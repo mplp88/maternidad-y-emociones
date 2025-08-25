@@ -73,9 +73,7 @@
             <img :src="post.imageUrl" alt="Post image" class="w-full h-full object-cover" />
           </div>
           <div class="p-6">
-            <h4
-              class="text-xl font-bold text-green-olive mb-3 group-hover:text-pink-coral transition-colors duration-200"
-            >
+            <h4 class="text-xl font-bold text-green-olive mb-3">
               {{ post.title }}
             </h4>
             <p class="text-green-olive opacity-80 mb-4 line-clamp-3">
