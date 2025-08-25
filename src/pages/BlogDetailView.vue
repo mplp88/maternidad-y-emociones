@@ -36,6 +36,28 @@
             <p class="text-xl text-green-olive opacity-80 mb-6 leading-relaxed">
               {{ post.summary }}
             </p>
+            <p
+              v-if="post.links"
+              class="text-lg text-semibold text-green-olive opacity-80 mb-6 leading-relaxed"
+            >
+              Ver en:
+              <a
+                v-if="post.links?.instagram"
+                :href="post.links?.instagram"
+                target="_blank"
+                class="text-pink-coral hover:text-green-olive font-semibold"
+              >
+                <i class="fab fa-instagram fa-xl p-2"></i>
+              </a>
+              <a
+                v-if="post.links?.facebook"
+                :href="post.links?.facebook"
+                target="_blank"
+                class="text-pink-coral hover:text-green-olive font-semibold"
+              >
+                <i class="fab fa-facebook fa-xl p-2"></i>
+              </a>
+            </p>
             <div class="flex items-center justify-center space-x-4 text-green-olive opacity-60">
               <span class="font-medium">{{ post.author }}</span>
               <span>•</span>

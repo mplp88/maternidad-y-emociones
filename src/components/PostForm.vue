@@ -73,6 +73,42 @@
       ></textarea>
     </div>
 
+    <!-- Links -->
+    <div class="space-y-2">
+      <label for="instagram" class="block text-lg font-semibold text-green-olive">
+        Link de Instagram:
+      </label>
+      <input
+        id="instagram"
+        v-model="formData.links.instagram"
+        placeholder="Ingrese el enlace de Instagram"
+        class="w-full border border-green-soft rounded-lg px-4 py-2 focus:ring-2 focus:ring-pink-coral focus:outline-none"
+      />
+    </div>
+
+    <div class="space-y-2">
+      <label for="facebook" class="block text-lg font-semibold text-green-olive">
+        Link de Facebook:
+      </label>
+      <input
+        id="facebook"
+        v-model="formData.links.facebook"
+        placeholder="Ingrese el enlace de Facebook"
+        class="w-full border border-green-soft rounded-lg px-4 py-2 focus:ring-2 focus:ring-pink-coral focus:outline-none"
+      />
+    </div>
+
+    <div class="space-y-2">
+      <label for="content" class="block text-lg font-semibold text-green-olive"> Contenido: </label>
+      <textarea
+        id="content"
+        v-model="formData.content"
+        required
+        placeholder="Ingrese el contenido"
+        class="w-full border border-green-soft rounded-lg px-4 py-2 h-40 resize-none focus:ring-2 focus:ring-pink-coral focus:outline-none"
+      ></textarea>
+    </div>
+
     <!-- Autor -->
     <div class="space-y-2">
       <label for="author" class="block text-lg font-semibold text-green-olive"> Autor: </label>
@@ -107,6 +143,7 @@ import axios from 'axios'
 
 const authStore = useAuthStore()
 const author = ref(`${authStore.user.firstName} ${authStore.user.lastName}`)
+const imagesModified = ref(false)
 
 const props = defineProps({
   post: {
@@ -128,6 +165,10 @@ const formData = reactive({
   images: [null],
   imageUrls: [],
   author: author.value,
+  links: {
+    instagram: '',
+    facebook: '',
+  },
 })
 
 // Si estamos en modo edición, cargamos los datos del post
@@ -142,6 +183,10 @@ watch(
       formData.imageUrls = newPost.imageUrls || []
       formData.author = newPost.author || author.value
       formData.slug = newPost.slug || ''
+      formData.links = {
+        instagram: newPost.links?.instagram || '',
+        facebook: newPost.links?.facebook || '',
+      }
     }
   },
   { immediate: true },
@@ -156,6 +201,7 @@ const removeImage = (index) => {
 }
 
 const handleChange = (event, index) => {
+  imagesModified.value = true
   formData.images[index] = event.target.files[0]
   formData.imageUrls = formData.images.map((file) => URL.createObjectURL(file))
 }
@@ -175,7 +221,7 @@ async function uploadImage(image) {
 }
 
 async function handleSubmit() {
-  if (formData.images.length) {
+  if (imagesModified.value) {
     const uploadPromises = formData.images.map((image) => uploadImage(image))
     formData.imageUrls = await Promise.all(uploadPromises)
   }
