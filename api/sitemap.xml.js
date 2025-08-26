@@ -8,7 +8,7 @@ export default async function handler(req, res) {
       return `
       <url>
         <loc>https://maternidadyemociones.com.ar/blog/${post.slug}</loc>
-        <lastmod>${new Date(post.updatedAt).toISOString()}</lastmod>
+        <lastmod>${new Date(post.updatedAt).toISOString() || new Date(post.createdAt).toISOString()}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
       </url>
