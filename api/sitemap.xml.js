@@ -1,6 +1,5 @@
 export default async function handler(req, res) {
-  const API_URL = import.meta.env.VITE_API_URL
-  const response = await fetch(`${API_URL}/blogs`)
+  const response = await fetch(`https://maternidad-y-emociones-api.vercel.app/api/blogs`)
   const { blogs } = await response.json()
 
   const urls = blogs
