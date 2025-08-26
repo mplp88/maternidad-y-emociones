@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /login
+Disallow: /dashboard
+
+Allow: /
+
+Sitemap: https://maternidadyemociones.com.ar/sitemap.xml
