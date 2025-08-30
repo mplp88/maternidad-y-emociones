@@ -98,17 +98,6 @@
       />
     </div>
 
-    <div class="space-y-2">
-      <label for="content" class="block text-lg font-semibold text-green-olive"> Contenido: </label>
-      <textarea
-        id="content"
-        v-model="formData.content"
-        required
-        placeholder="Ingrese el contenido"
-        class="w-full border border-green-soft rounded-lg px-4 py-2 h-40 resize-none focus:ring-2 focus:ring-pink-coral focus:outline-none"
-      ></textarea>
-    </div>
-
     <!-- Autor -->
     <div class="space-y-2">
       <label for="author" class="block text-lg font-semibold text-green-olive"> Autor: </label>

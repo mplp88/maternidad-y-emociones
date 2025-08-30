@@ -76,22 +76,79 @@
 
         <!-- Article Footer -->
         <footer class="p-8 lg:p-12 border-t border-green-soft">
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <RouterLink
-              to="/blog"
-              class="flex items-center text-green-olive hover:text-pink-coral font-semibold transition-colors duration-200"
-            >
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 19l-7-7 7-7"
-                ></path>
-              </svg>
-              Volver al blog
-            </RouterLink>
+          <div class="flex flex-col sm:flex-row items-center justify-between mb-3">
+            <div class="flex flex-col items-center sm:items-start space-y-3">
+              <!-- Like Button -->
+              <LikeButton :slug="post.slug" :client-id="clientId" />
+            </div>
+          </div>
+          <p class="text-green-olive font-semibold mb-3">Comentarios</p>
+          <div
+            v-if="!post.comments.length"
+            class="flex flex-col sm:flex-row items-center justify-between mb-3 w-full"
+          >
+            <p class="text-green-olive">Todavía no hay comentarios.</p>
+          </div>
+          <div
+            v-else
+            v-for="(comment, idx) in post.comments"
+            class="flex flex-col sm:flex-row items-center justify-between mb-3 w-full"
+            :key="idx"
+          >
+            <div class="flex flex-col items-center sm:items-start space-y-3 w-full">
+              <p class="text-green-olive font-semibold">{{ comment.author }}</p>
+              <p class="text-green-olive">{{ comment.content }}</p>
+              <p class="text-green-olive">{{ formatDate(comment.createdAt) }}</p>
+              <p v-if="comment.clientId === clientId" class="text-pink-coral">
+                <a href="#" @click.prevent="deleteComment(comment._id)">Eliminar</a>
+              </p>
+              <hr class="w-full border-green-soft" />
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row items-center justify-between mb-3">
+            <div class="flex flex-col items-center sm:items-start space-y-3 w-full">
+              <p class="text-green-olive font-semibold">Dejá tu comentario</p>
+              <form @submit.prevent="handleSubmit" class="w-full">
+                <input
+                  v-model="comment.author"
+                  placeholder="Tu nombre"
+                  class="border border-green-soft rounded-lg p-2 w-full mb-2"
+                />
+                <textarea
+                  v-model="comment.content"
+                  placeholder="Escribe un comentario..."
+                  class="border border-green-soft rounded-lg p-2 w-full"
+                ></textarea>
+                <button
+                  type="submit"
+                  class="mt-2 bg-pink-coral hover:bg-pink-light text-cream font-semibold px-4 py-2 rounded-lg transition-colors duration-200"
+                >
+                  Comentar
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+            <!-- Bloque de  volver al blog -->
+            <div class="flex flex-col items-center sm:items-start space-y-3">
+              <!-- Link volver al blog -->
+              <RouterLink
+                to="/blog"
+                class="flex items-center text-green-olive hover:text-pink-coral font-semibold transition-colors duration-200"
+              >
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                  ></path>
+                </svg>
+                Volver al blog
+              </RouterLink>
+            </div>
 
+            <!-- Bloque compartir -->
             <div class="relative flex items-center space-x-4">
               <button
                 class="px-4 h-10 bg-green-olive hover:bg-green-soft text-cream rounded-full flex items-center justify-center font-semibold transition-colors duration-200"
@@ -125,15 +182,23 @@ import { useFormatDate } from '../composables/useFormatDate'
 import { useHead } from '@vueuse/head'
 import { useToast } from '@/composables/useToast'
 import PostImage from '@/components/PostImage.vue'
+import LikeButton from '@/components/LikeButton.vue'
+import Cookies from 'js-cookie'
 
 const route = useRoute()
 const post = ref({})
 const loading = ref(true)
 const errorMessage = ref('')
 const { formatDate } = useFormatDate()
-const showToast = useToast()
+const { showToast } = useToast()
 
 const showShare = ref(false)
+const clientId = ref('')
+const userName = ref('')
+const comment = ref({
+  author: '',
+  content: '',
+})
 
 function toggleShare() {
   if (navigator.share) {
@@ -143,7 +208,7 @@ function toggleShare() {
         text: post.value.excerpt,
         url: window.location.href,
       })
-      .then(() => showToast('Compartido con éxito', 'success'))
+      .then(() => showToast('Compartido con éxito'))
       .catch((err) => {
         showToast('Ocurrió un error al compartir', 'error')
         console.error('Error al compartir:', err)
@@ -154,13 +219,13 @@ function toggleShare() {
 }
 
 // Acciones de compartir
-function copyLink() {
+const copyLink = () => {
   navigator.clipboard.writeText(window.location.href)
   showShare.value = false
   alert('¡Vínculo copiado!')
 }
 
-function shareFacebook() {
+const shareFacebook = () => {
   window.open(
     `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,
     '_blank',
@@ -168,14 +233,14 @@ function shareFacebook() {
   showShare.value = false
 }
 
-function shareEmail() {
+const shareEmail = () => {
   window.open(
     `mailto:?subject=${encodeURIComponent(post.value.title)}&body=${encodeURIComponent(window.location.href)}`,
   )
   showShare.value = false
 }
 
-function shareTwitter() {
+const shareTwitter = () => {
   window.open(
     `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.value.title)}`,
     '_blank',
@@ -183,8 +248,94 @@ function shareTwitter() {
   showShare.value = false
 }
 
+const handleSubmit = async () => {
+  try {
+    if (comment.value.author && comment.value.content) {
+      const { data } = await axios.put(
+        `${import.meta.env.VITE_API_URL}/blogs/${post.value.slug}/comments`,
+        {
+          comment: {
+            clientId: clientId.value,
+            author: comment.value.author,
+            content: comment.value.content,
+          },
+        },
+      )
+
+      userName.value = data.comment.author
+      saveUserName()
+
+      if (data.ok) {
+        showToast('Comentario enviado con éxito')
+        comment.value.content = ''
+        post.value.comments.push(data.comment)
+      } else {
+        showToast('Ocurrió un error al enviar el comentario.', 'error')
+        console.error(data.error)
+      }
+    } else {
+      showToast('Por favor, completa todos los campos.', 'error')
+    }
+  } catch (error) {
+    showToast('Ocurrió un error al enviar el comentario.', 'error')
+    console.error('Error al enviar el comentario:', error)
+  }
+}
+
+const deleteComment = async (commentId) => {
+  try {
+    const { data } = await axios.delete(
+      `${import.meta.env.VITE_API_URL}/blogs/${post.value.slug}/comments/${commentId}`,
+      {
+        data: {
+          clientId: clientId.value,
+        },
+      },
+    )
+
+    if (data.ok) {
+      showToast('Comentario eliminado con éxito')
+      // Eliminar el comentario de la lista
+      post.value.comments = post.value.comments.filter((c) => c._id !== commentId)
+    } else {
+      showToast('Ocurrió un error al eliminar el comentario.', 'error')
+      console.error(data.error)
+    }
+  } catch (error) {
+    showToast('Ocurrió un error al eliminar el comentario.', 'error')
+    console.error('Error al eliminar el comentario:', error)
+  }
+}
+
+const getOrCreateClientId = () => {
+  let id = localStorage.getItem('clientId') || Cookies.get('clientId')
+  if (!id) {
+    id = crypto.randomUUID()
+    localStorage.setItem('clientId', id)
+    Cookies.set('clientId', id, { expires: 365 })
+  } else {
+    localStorage.setItem('clientId', id)
+    Cookies.set('clientId', id, { expires: 365 })
+  }
+  return id
+}
+
+const getUserName = () => {
+  return localStorage.getItem('userName') || Cookies.get('userName') || ''
+}
+
+const saveUserName = () => {
+  if (userName.value) {
+    localStorage.setItem('userName', userName.value)
+    Cookies.set('userName', userName.value, { expires: 365 })
+  }
+}
+
 onMounted(async () => {
   try {
+    clientId.value = getOrCreateClientId()
+    userName.value = getUserName()
+    if (userName.value) comment.value.author = userName.value
     const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/blogs/${route.params.slug}`)
     post.value = data.blog
     if (!post.value) {
