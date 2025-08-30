@@ -100,7 +100,9 @@
                   {{ post.likes ? post.likes.length : 0 }}
                 </td>
                 <td class="px-6 py-4 text-green-olive opacity-80">
-                  {{ post.comments ? post.comments.length : 0 }}
+                  <RouterLink :to="`/blog/${post.slug}#comentarios`">{{
+                    post.comments ? post.comments.length : 0
+                  }}</RouterLink>
                 </td>
                 <td class="px-6 py-4">
                   <div class="flex items-center justify-center space-x-3">

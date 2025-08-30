@@ -1,6 +1,9 @@
 <template>
   <div class="relative w-full h-full overflow-hidden rounded-2xl" v-if="images.length">
-    <Carousel v-bind="carouselConfig">
+    <div v-if="images.length === 1">
+      <img :src="images[0]" :alt="`Imagen 1`" />
+    </div>
+    <Carousel v-else v-bind="carouselConfig">
       <Slide v-for="(image, idx) in images" :key="idx">
         <img class="carousel__item" :src="image" :alt="`Imagen ${idx + 1}`" />
       </Slide>
