@@ -18,7 +18,8 @@
         </div>
         <h2 class="text-2xl font-bold text-green-olive mb-4">{{ errorMessage }}</h2>
         <RouterLink to="/blog" class="text-pink-coral hover:text-green-olive font-semibold">
-          ← Volver al blog
+          <i class="fa-solid fa-chevron-left mr-2"></i>
+          Volver al blog
         </RouterLink>
       </div>
 
@@ -81,6 +82,10 @@
               <!-- Like Button -->
               <LikeButton :slug="post.slug" :client-id="clientId" />
             </div>
+            <!-- Bloque compartir -->
+            <div class="relative flex items-center space-x-4">
+              <ShareButton :post="post" />
+            </div>
           </div>
           <p class="text-green-olive font-semibold mb-3" id="comentarios">Comentarios</p>
           <div
@@ -136,36 +141,9 @@
                 to="/blog"
                 class="flex items-center text-green-olive hover:text-pink-coral font-semibold transition-colors duration-200"
               >
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 19l-7-7 7-7"
-                  ></path>
-                </svg>
+                <i class="fa-solid fa-chevron-left mr-2"></i>
                 Volver al blog
               </RouterLink>
-            </div>
-
-            <!-- Bloque compartir -->
-            <div class="relative flex items-center space-x-4">
-              <button
-                class="px-4 h-10 bg-green-olive hover:bg-green-soft text-cream rounded-full flex items-center justify-center font-semibold transition-colors duration-200"
-                @click="toggleShare"
-              >
-                Compartir
-              </button>
-              <!-- Popup de opciones de compartir -->
-              <div
-                v-if="showShare"
-                class="absolute bottom-12 right-0 z-10 bg-white border border-green-soft rounded-xl shadow-lg p-4 flex flex-col min-w-[180px]"
-              >
-                <button class="share-option" @click="copyLink">Copiar vínculo</button>
-                <button class="share-option" @click="shareFacebook">Facebook</button>
-                <button class="share-option" @click="shareTwitter">Twitter / X</button>
-                <button class="share-option" @click="shareEmail">Email</button>
-              </div>
             </div>
           </div>
         </footer>
@@ -183,6 +161,7 @@ import { useHead } from '@vueuse/head'
 import { useToast } from '@/composables/useToast'
 import PostImage from '@/components/PostImage.vue'
 import LikeButton from '@/components/LikeButton.vue'
+import ShareButton from '@/components/ShareButton.vue'
 import Cookies from 'js-cookie'
 
 const route = useRoute()
@@ -192,61 +171,12 @@ const errorMessage = ref('')
 const { formatDate } = useFormatDate()
 const { showToast } = useToast()
 
-const showShare = ref(false)
 const clientId = ref('')
 const userName = ref('')
 const comment = ref({
   author: '',
   content: '',
 })
-
-function toggleShare() {
-  if (navigator.share) {
-    navigator
-      .share({
-        title: post.value.title,
-        text: post.value.excerpt,
-        url: window.location.href,
-      })
-      .then(() => showToast('Compartido con éxito'))
-      .catch((err) => {
-        showToast('Ocurrió un error al compartir', 'error')
-        console.error('Error al compartir:', err)
-      })
-  } else {
-    showShare.value = !showShare.value
-  }
-}
-
-// Acciones de compartir
-const copyLink = () => {
-  navigator.clipboard.writeText(window.location.href)
-  showShare.value = false
-  alert('¡Vínculo copiado!')
-}
-
-const shareFacebook = () => {
-  window.open(
-    `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,
-    '_blank',
-  )
-  showShare.value = false
-}
-
-const shareEmail = () => {
-  window.open(
-    `mailto:?subject=${encodeURIComponent(post.value.title)}&body=${encodeURIComponent(window.location.href)}`,
-  )
-  showShare.value = false
-}
-
-const shareTwitter = () => {
-  window.open(
-    `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.value.title)}`,
-    '_blank',
-  )
-  showShare.value = false
-}
 
 const handleSubmit = async () => {
   try {
@@ -395,27 +325,5 @@ onMounted(async () => {
 .post-content em {
   font-style: italic;
   color: var(--color-green-olive);
-}
-
-.share-option {
-  padding: 0.7rem 1rem;
-  background: var(--color-pink-light);
-  color: var(--color-green-olive);
-  border: none;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  text-align: left;
-  cursor: pointer;
-  transition:
-    background 0.2s,
-    color 0.2s;
-}
-.share-option:last-child {
-  margin-bottom: 0;
-}
-.share-option:hover {
-  background: var(--color-green-soft);
-  color: var(--color-cream);
 }
 </style>
