@@ -68,6 +68,12 @@
               <tr class="bg-green-soft">
                 <th class="px-6 py-4 text-left text-lg font-semibold text-green-olive">Título</th>
                 <th class="px-6 py-4 text-left text-lg font-semibold text-green-olive">Fecha</th>
+                <th class="px-6 py-4 text-left text-lg font-semibold text-green-olive">
+                  <i class="fa-solid fa-heart"></i>
+                </th>
+                <th class="px-6 py-4 text-left text-lg font-semibold text-green-olive">
+                  <i class="fa-solid fa-comment"></i>
+                </th>
                 <th class="px-6 py-4 text-center text-lg font-semibold text-green-olive">
                   Acciones
                 </th>
@@ -89,6 +95,12 @@
                 </td>
                 <td class="px-6 py-4 text-green-olive opacity-80">
                   {{ formatDate(post.createdAt) || 'Sin fecha' }}
+                </td>
+                <td class="px-6 py-4 text-green-olive opacity-80">
+                  {{ post.likes ? post.likes.length : 0 }}
+                </td>
+                <td class="px-6 py-4 text-green-olive opacity-80">
+                  {{ post.comments ? post.comments.length : 0 }}
                 </td>
                 <td class="px-6 py-4">
                   <div class="flex items-center justify-center space-x-3">
