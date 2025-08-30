@@ -10,6 +10,14 @@ const router = createRouter({
     if (savedPosition) {
       return savedPosition
     }
+
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth', // opcional: animación suave
+      }
+    }
+
     return { top: 0 }
   },
   routes: [

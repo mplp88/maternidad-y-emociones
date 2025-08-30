@@ -82,7 +82,7 @@
               <LikeButton :slug="post.slug" :client-id="clientId" />
             </div>
           </div>
-          <p class="text-green-olive font-semibold mb-3">Comentarios</p>
+          <p class="text-green-olive font-semibold mb-3" id="comentarios">Comentarios</p>
           <div
             v-if="!post.comments.length"
             class="flex flex-col sm:flex-row items-center justify-between mb-3 w-full"
