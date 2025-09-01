@@ -133,32 +133,33 @@
         <h3 class="text-3xl lg:text-5xl font-bold text-green-olive mb-6" id="formacion">
           Formación
         </h3>
-        <div class="grid md:grid-cols-3 gap-8 mt-10 mb-5">
+        <div class="w-24 h-1 bg-pink-coral mx-auto rounded-full"></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 mt-10 mb-5">
+        <div
+          class="bg-white rounded-2xl shadow-lg text-center"
+          v-for="(item, index) in formationItems"
+          :key="index"
+        >
           <div
-            class="bg-white rounded-2xl shadow-lg text-center"
-            v-for="(item, index) in formationItems"
-            :key="index"
+            class="aspect-video bg-white overflow-hidden rounded-t-2xl flex items-center justify-center"
           >
-            <div
-              class="aspect-video bg-white overflow-hidden rounded-t-2xl flex items-center justify-center"
-            >
-              <img :src="item.logo" class="object-cover" />
-            </div>
-            <h3 class="text-xl font-bold text-green-olive mt-5 mb-3 px-3">
-              {{ item.title }}
-            </h3>
-            <p
-              class="text-green-olive opacity-80 mb-3 px-3"
-              v-for="(link, linkIndex) in item.links"
-              :key="linkIndex"
-            >
-              <a :href="link.url" target="_blank">{{ link.text }}</a>
-            </p>
-            <p class="text-green-olive opacity-80 mb-3 px-3">{{ item.year }}</p>
-            <p class="text-pink-coral font-semibold mb-3 px-3">
-              <a href="#" @click.prevent="openModal(item.certificateUrl)">Ver certificado</a>
-            </p>
+            <img :src="item.logo" class="object-cover" />
           </div>
+          <h3 class="text-xl font-bold text-green-olive mt-5 mb-3 px-3">
+            {{ item.title }}
+          </h3>
+          <p
+            class="text-green-olive opacity-80 mb-3 px-3"
+            v-for="(link, linkIndex) in item.links"
+            :key="linkIndex"
+          >
+            <a :href="link.url" target="_blank">{{ link.text }}</a>
+          </p>
+          <p class="text-green-olive opacity-80 mb-3 px-3">{{ item.year }}</p>
+          <p class="text-pink-coral font-semibold mb-3 px-3">
+            <a href="#" @click.prevent="openModal(item.certificateUrl)">Ver certificado</a>
+          </p>
         </div>
       </div>
     </div>
