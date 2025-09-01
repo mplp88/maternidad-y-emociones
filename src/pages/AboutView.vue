@@ -243,7 +243,7 @@ const formationItems = [
         url: 'https://imepeducation.com/',
       },
       {
-        text: 'Universidad Catótlica de Cuyo',
+        text: 'Universidad Católica de Cuyo',
         url: 'https://uccuyo.edu.ar/',
       },
     ],
