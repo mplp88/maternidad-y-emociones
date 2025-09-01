@@ -222,7 +222,7 @@ const socialLinks = [
 
 const formationItems = [
   {
-    title: 'Doula de Posparto y crianza',
+    title: 'Doula de Posparto y Crianza',
     logo: 'https://scontent.faep4-3.fna.fbcdn.net/v/t39.30808-6/305749545_514736987321700_2106561817077930096_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFWGU9BpD0Fd63Xx2T7rplrmXG4ozS6lP6ZcbijNLqU_nlmkDtH1Tg53Ej_I6u5gjU&_nc_ohc=QfgBUzKZbaQQ7kNvwExQkqk&_nc_oc=AdnAj2e1RKnIBkTUFdhG2xMCLKRuUYcL3kNTk4qzycGr-jiQJhhM_0aw8iZib8zCR1lAQhgNV2GIFfN4wDIqEJnw&_nc_zt=23&_nc_ht=scontent.faep4-3.fna&_nc_gid=jEl61gtl8ydpHzi3IMAXRQ&oh=00_AfWuZS5F7zVa7Ca4aFIqaHZIFLr5hmr72aKOdz_75DxDbQ&oe=68BAA701',
     links: [
       {
