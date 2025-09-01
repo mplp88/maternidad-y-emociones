@@ -78,7 +78,7 @@
       </div>
 
       <!-- Additional Info Cards -->
-      <div class="grid md:grid-cols-3 gap-8 mt-10">
+      <div class="grid md:grid-cols-3 gap-8 mt-10 mb-5">
         <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
           <div
             class="w-16 h-16 bg-pink-light rounded-full flex items-center justify-center mx-auto mb-4"
@@ -129,13 +129,78 @@
           </p>
         </div>
       </div>
+      <div class="text-center mb-10">
+        <h3 class="text-3xl lg:text-5xl font-bold text-green-olive mb-6" id="formacion">
+          Formación
+        </h3>
+        <div class="grid md:grid-cols-3 gap-8 mt-10 mb-5">
+          <div
+            class="bg-white rounded-2xl shadow-lg text-center"
+            v-for="(item, index) in formationItems"
+            :key="index"
+          >
+            <div
+              class="aspect-video bg-white overflow-hidden rounded-t-2xl flex items-center justify-center"
+            >
+              <img :src="item.logo" class="object-cover" />
+            </div>
+            <h3 class="text-xl font-bold text-green-olive mt-5 mb-3 px-3">
+              {{ item.title }}
+            </h3>
+            <p
+              class="text-green-olive opacity-80 mb-3 px-3"
+              v-for="(link, linkIndex) in item.links"
+              :key="linkIndex"
+            >
+              <a :href="link.url" target="_blank">{{ link.text }}</a>
+            </p>
+            <p class="text-green-olive opacity-80 mb-3 px-3">{{ item.year }}</p>
+            <p class="text-pink-coral font-semibold mb-3 px-3">
+              <a href="#" @click.prevent="openModal(item.certificateUrl)">Ver certificado</a>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+  <!-- Modal -->
+  <div
+    v-if="showModal"
+    class="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+    @click="closeModal"
+  >
+    <div class="relative bg-white rounded-2xl shadow-xl max-w-3xl w-full p-4">
+      <!-- Botón cerrar -->
+      <button
+        @click="closeModal"
+        class="absolute top-2 right-2 text-gray-600 hover:text-pink-coral"
+      >
+        <i class="fas fa-times fa-lg"></i>
+      </button>
+
+      <!-- Imagen del certificado -->
+      <img :src="certificateUrl" alt="Certificado" class="w-full h-auto rounded-lg" />
+    </div>
+  </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { usePageDataStore } from '@/stores/pageData'
 const name = usePageDataStore().name
+
+const certificateUrl = ref('')
+const showModal = ref(false)
+
+const openModal = (url) => {
+  certificateUrl.value = url
+  showModal.value = true
+}
+
+const closeModal = () => {
+  certificateUrl.value = ''
+  showModal.value = false
+}
 
 const socialLinks = [
   {
@@ -153,5 +218,38 @@ const socialLinks = [
   //   url: 'https://www.x.com/maternidadyemociones.cp',
   //   icon: 'x-twitter',
   // },
+]
+
+const formationItems = [
+  {
+    title: 'Doula de Posparto y crianza',
+    logo: 'https://scontent.faep4-3.fna.fbcdn.net/v/t39.30808-6/305749545_514736987321700_2106561817077930096_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFWGU9BpD0Fd63Xx2T7rplrmXG4ozS6lP6ZcbijNLqU_nlmkDtH1Tg53Ej_I6u5gjU&_nc_ohc=QfgBUzKZbaQQ7kNvwExQkqk&_nc_oc=AdnAj2e1RKnIBkTUFdhG2xMCLKRuUYcL3kNTk4qzycGr-jiQJhhM_0aw8iZib8zCR1lAQhgNV2GIFfN4wDIqEJnw&_nc_zt=23&_nc_ht=scontent.faep4-3.fna&_nc_gid=jEl61gtl8ydpHzi3IMAXRQ&oh=00_AfWuZS5F7zVa7Ca4aFIqaHZIFLr5hmr72aKOdz_75DxDbQ&oe=68BAA701',
+    links: [
+      {
+        text: 'Quiero Ser Doula',
+        url: 'https://quieroserdoula.com/',
+      },
+    ],
+    certificateUrl:
+      'https://res.cloudinary.com/djwpqblr0/image/upload/v1756680781/Diploma_Doula_esghgs.png',
+    year: '2023',
+  },
+  {
+    title: 'Diplomatura en Psicología Perinatal',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKAtV409drYiGvBQ0-Jga8_zC4tUYFhJ3mtw&s',
+    links: [
+      {
+        text: 'Institute of Medicine and Psychology',
+        url: 'https://imepeducation.com/',
+      },
+      {
+        text: 'Universidad Catótlica de Cuyo',
+        url: 'https://uccuyo.edu.ar/',
+      },
+    ],
+    certificateUrl:
+      'https://res.cloudinary.com/djwpqblr0/image/upload/v1756680781/Diploma_psicolog%C3%ADa_perinatal_p9wnc2.png',
+    year: '2025',
+  },
 ]
 </script>
