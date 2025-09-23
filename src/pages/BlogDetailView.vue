@@ -25,9 +25,6 @@
 
       <!-- Article Content -->
       <article v-else class="bg-white rounded-2xl shadow-xl overflow-hidden">
-        <!-- Header Image -->
-        <PostImage :images="post.imageUrls" />
-
         <!-- Article Header -->
         <header class="p-8 lg:p-12 border-b border-green-soft">
           <div class="text-center">
@@ -66,7 +63,10 @@
             </div>
           </div>
         </header>
-
+        <div class="border-b border-green-soft">
+          <!-- Header Image -->
+          <PostImage :images="post.imageUrls" />
+        </div>
         <!-- Article Body -->
         <div class="p-8 lg:p-12">
           <div
