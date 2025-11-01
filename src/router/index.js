@@ -64,6 +64,11 @@ const router = createRouter({
       component: () => import('../pages/DashboardView.vue'),
       meta: { requiresAuth: true },
     },
+    {
+      path: '/ebook',
+      name: 'Ebook',
+      component: () => import('@/pages/EbookView.vue'),
+    },
   ],
 })
 

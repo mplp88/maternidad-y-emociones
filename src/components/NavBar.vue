@@ -22,6 +22,13 @@
         <!-- Menú normal en pantallas grandes -->
         <nav class="hidden md:flex space-x-8">
           <RouterLink
+            to="/ebook"
+            class="border-2 border-green-olive text-cream font-medium transition-colors duration-200 px-3 py-2 rounded-md bg-green-olive hover:scale-110 transition-transform shadow"
+          >
+            Ebook
+            <i class="fa-solid fa-circle-exclamation text-pink-coral bg-cream rounded-full"></i>
+          </RouterLink>
+          <RouterLink
             to="/blog"
             class="text-green-olive hover:text-cream font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-green-olive"
           >
@@ -45,6 +52,14 @@
 
       <!-- Menú desplegable en mobile -->
       <div v-if="isMenuOpen" class="md:hidden border-t border-green-olive pt-2 pb-4 space-y-2">
+        <RouterLink
+          to="/ebook"
+          class="block text-green-olive hover:text-cream font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-green-olive"
+          @click="isMenuOpen = false"
+        >
+          Ebook
+          <span class="text-cream bg-pink-coral rounded-md p-1">¡Nuevo!</span>
+        </RouterLink>
         <RouterLink
           to="/blog"
           class="block text-green-olive hover:text-cream font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-green-olive"
