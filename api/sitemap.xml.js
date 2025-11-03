@@ -28,6 +28,11 @@ export default async function handler(req, res) {
       <priority>0.8</priority>
     </url>
     <url>
+      <loc>https://maternidadyemociones.com.ar/ebook</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+    <url>
       <loc>https://maternidadyemociones.com.ar/sobre-mi</loc>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
