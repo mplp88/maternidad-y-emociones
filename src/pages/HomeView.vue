@@ -4,8 +4,8 @@
     <div class="max-w-5xl mx-auto text-center space-y-8">
       <h2 class="text-3xl font-bold text-green-olive">📘 ¡Nuevo Ebook disponible!</h2>
       <p class="text-lg text-green-olive/90 max-w-2xl mx-auto">
-        Te presentamos nuestro nuevo Ebook gratuito sobre maternidad real y emocional. Descargalo y
-        descubrí herramientas para acompañarte en esta etapa con amor y conciencia.
+        Te presento mi nuevo Ebook gratuito sobre maternidad real y emocional. Descargalo y descubrí
+        herramientas para acompañarte en esta etapa con amor y conciencia.
       </p>
       <button
         class="bg-pink-coral hover:bg-pink-light text-cream hover:text-green-olive px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
