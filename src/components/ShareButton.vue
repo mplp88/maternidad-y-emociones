@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
 import { useToast } from '@/composables/useToast'
 
 const { showToast } = useToast()
