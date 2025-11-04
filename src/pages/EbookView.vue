@@ -31,6 +31,25 @@
         </div>
       </div>
       <div class="mt-10 max-w-2xl mx-auto px-6 text-center">
+        <small class="bg-green-olive/40 p-4 rounded-lg text-green-olive block mb-6 shadow-md"
+          ><em
+            >💛 Este e-book fue creado como una guía de acompañamiento emocional y reflexión
+            personal.</em
+          >
+          <br />
+          <br />
+          A lo largo de sus páginas vas a encontrar recursos basados en
+          <strong>Primeros Auxilios Psicológicos</strong>, pensados para brindar contención inicial,
+          promover el autocuidado y acompañar los procesos emocionales que atraviesan las
+          maternidades.
+          <br />
+          Sin embargo, su contenido no reemplaza la atención, diagnóstico ni tratamiento de
+          profesionales de la salud mental o médica.
+          <br />
+          Si estás transitando un momento de angustia, ansiedad o dificultad emocional, te invitamos
+          a buscar acompañamiento profesional: pedir ayuda también es una forma de cuidado.
+          🌿</small
+        >
         <img
           class="w-full h-auto rounded-lg shadow-lg"
           :src="ebook.coverImage"
