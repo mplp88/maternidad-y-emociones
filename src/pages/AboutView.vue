@@ -71,7 +71,7 @@
                 herramientas.</strong
               >
             </p>
-            <p class="text-lg text-green-olive leading-relaxed">
+            <p class="text-lg text-green-olive leading-relaxed mb-6">
               A lo largo del tiempo atravesé mis propios desafíos —una infancia vulnerable,
               problemas de salud, ansiedad, pausas necesarias para cuidar de mí misma—, y de cada
               experiencia aprendí algo valioso sobre la importancia de <strong>ser red</strong>. Por
@@ -81,13 +81,13 @@
               de mi rol, y <strong>sugiriendo acompañamientos especializados</strong> cuando es
               necesario.
             </p>
-            <p class="text-lg text-green-olive leading-relaxed">
+            <p class="text-lg text-green-olive leading-relaxed mb-6">
               Creo profundamente que
               <strong>una maternidad acompañada, respetada y emocionalmente cuidada</strong>
               tiene un impacto directo en la salud mental de las familias y en la forma en que
               criamos a las futuras generaciones.
             </p>
-            <p class="text-lg text-green-olive leading-relaxed">
+            <p class="text-lg text-green-olive leading-relaxed mb-6">
               Este espacio nació para ser eso: un abrazo, un lugar donde podamos hablar de lo que
               duele y también de lo que sostiene. Porque cuando criamos en comunidad, con amor,
               respeto y empatía, estamos transformando el mundo desde la raíz. 🌱
