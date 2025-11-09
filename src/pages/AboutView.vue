@@ -183,7 +183,12 @@
             <a href="#" style="cursor: default" @click.prevent>Certificado en emisión</a>
           </p>
           <p class="text-pink-coral font-semibold mb-3 px-3" v-else>
-            <a href="#" @click.prevent="openModal(item.certificateUrl)">Ver certificado</a>
+            <a href="#" @click.prevent="openModal(item.certificateUrl)">{{
+              'Ver ' +
+              (item.certificateUrl.length > 1 ? item.certificateUrl.length + ' ' : '') +
+              'certificado' +
+              (item.certificateUrl.length > 1 ? 's' : '')
+            }}</a>
           </p>
         </div>
       </div>
@@ -193,19 +198,34 @@
   <div
     v-if="showModal"
     class="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-    @click="closeModal"
+    @click="onOverlayClick"
   >
-    <div class="relative bg-white rounded-2xl shadow-xl max-w-3xl w-full p-4">
-      <!-- Botón cerrar -->
+    <!-- Contenedor del modal: evitamos que el click dentro burbujee (opcional) -->
+    <div class="relative bg-white rounded-2xl shadow-xl max-w-3xl w-full p-4" @click.stop>
+      <!-- Botón cerrar (siempre cierra) -->
       <button
         @click="closeModal"
-        class="absolute top-2 right-2 text-gray-600 hover:text-pink-coral"
+        class="absolute top-2 right-2 text-gray-600 hover:text-pink-coral transition-colors z-100"
       >
         <i class="fas fa-times fa-lg"></i>
       </button>
 
-      <!-- Imagen del certificado -->
-      <img :src="certificateUrl" alt="Certificado" class="w-full h-auto rounded-lg" />
+      <!-- Contenido: imagen única o carousel -->
+      <div v-if="certificateUrl.length === 1">
+        <img :src="certificateUrl[0]" :alt="`Certificado`" class="w-full h-auto rounded-lg" />
+      </div>
+
+      <Carousel v-else v-bind="carouselConfig">
+        <Slide v-for="(image, idx) in certificateUrl" :key="idx">
+          <img class="carousel__item" :src="image" :alt="`Imagen ${idx + 1}`" />
+        </Slide>
+
+        <template #addons>
+          <!-- NO uses @click.stop aquí -->
+          <Navigation />
+          <Pagination />
+        </template>
+      </Carousel>
     </div>
   </div>
 </template>
@@ -213,19 +233,32 @@
 <script setup>
 import { ref } from 'vue'
 import { usePageDataStore } from '@/stores/pageData'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+
 const name = usePageDataStore().name
 
 const certificateUrl = ref('')
 const showModal = ref(false)
 
-const openModal = (url) => {
-  certificateUrl.value = url
+const carouselConfig = {
+  itemsToShow: 1,
+  wrapAround: false,
+}
+
+const openModal = (urls) => {
+  certificateUrl.value = urls
   showModal.value = true
 }
 
 const closeModal = () => {
   certificateUrl.value = ''
   showModal.value = false
+}
+
+const onOverlayClick = (e) => {
+  if (e.target === e.currentTarget) {
+    closeModal()
+  }
 }
 
 const socialLinks = [
@@ -256,8 +289,9 @@ const formationItems = [
         url: 'https://quieroserdoula.com/',
       },
     ],
-    certificateUrl:
+    certificateUrl: [
       'https://res.cloudinary.com/djwpqblr0/image/upload/v1756680781/Diploma_Doula_esghgs.png',
+    ],
     year: '2023',
   },
   {
@@ -273,8 +307,9 @@ const formationItems = [
         url: 'https://uccuyo.edu.ar/',
       },
     ],
-    certificateUrl:
+    certificateUrl: [
       'https://res.cloudinary.com/djwpqblr0/image/upload/v1756680781/Diploma_psicolog%C3%ADa_perinatal_p9wnc2.png',
+    ],
     year: '2025',
   },
   {
@@ -286,7 +321,11 @@ const formationItems = [
         url: 'https://institucionbadra.org/',
       },
     ],
-    certificateUrl: '',
+    certificateUrl: [
+      'https://res.cloudinary.com/djwpqblr0/image/upload/v1762659495/Diploma_Badra_43886-34514830-18147_gwflon.jpg',
+      'https://res.cloudinary.com/djwpqblr0/image/upload/v1762659493/Diploma_SAMUE_43886-34514830-18149_p2jbkp.jpg',
+      'https://res.cloudinary.com/djwpqblr0/image/upload/v1762659492/Diploma_CIESa_43886-34514830-18148_poh7lr.jpg',
+    ],
     year: '2025',
   },
 ]
