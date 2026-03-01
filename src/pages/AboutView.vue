@@ -38,66 +38,97 @@
 
             <!-- Decorative elements -->
             <div
-              class="absolute -top-4 -right-4 w-20 h-20 bg-green-soft rounded-full opacity-60 animate-pulse"
+              class="absolute -top-2 -right-2 w-20 h-20 bg-green-soft rounded-full opacity-60 animate-pulse"
             ></div>
             <div
-              class="absolute -bottom-6 -left-6 w-16 h-16 bg-pink-coral rounded-full opacity-60 animate-pulse delay-1000"
+              class="absolute -bottom-2 -left-2 w-16 h-16 bg-pink-coral rounded-full opacity-60 animate-pulse delay-1000"
             ></div>
           </div>
         </div>
 
         <!-- Text Content -->
-        <div class="space-y-8">
-          <div class="bg-white rounded-2xl p-8 shadow-xl">
-            <p class="text-lg text-green-olive leading-relaxed mb-6">
-              ¡Hola! Soy <span class="font-bold text-pink-coral text-xl">{{ name }}</span
-              >, creadora de <span class="italic font-semibold">Maternidad y Emociones</span> 🌷
+        <!-- Presentación -->
+        <section class="bg-white rounded-2xl p-8 lg:p-12 shadow-xl">
+          <h2 class="text-3xl lg:text-4xl font-bold text-green-olive mb-6">
+            ✨ Hola, soy <span class="text-pink-coral">Caterina</span>
+          </h2>
+
+          <p class="text-lg text-green-olive leading-relaxed">
+            Mis experiencias durante el embarazo, parto y puerperio —atravesadas por la maternidad
+            en pandemia— fueron el punto de partida para crear un lugar de acompañamiento más
+            humano, empático y respetuoso.
+          </p>
+        </section>
+      </div>
+      <div class="grid lg:grid-cols-3 gap-8 items-center mt-10 mb-10">
+        <!-- Historia personal -->
+        <section class="bg-pink-light/40 rounded-2xl p-6 shadow-lg h-full">
+          <h3 class="text-2xl font-semibold text-green-olive mb-6">🌷 Mi recorrido personal</h3>
+
+          <div class="text-green-olive leading-relaxed text-lg">
+            <p>
+              Vengo de un contexto vulnerable y de una historia atravesada por desafíos personales y
+              de salud que marcaron distintas etapas de mi vida. El arte fue desde temprano un modo
+              de sostén y expresión.
             </p>
-            <p class="text-lg text-green-olive leading-relaxed mb-6">
-              Mi recorrido personal y profesional está profundamente ligado a lo que soy hoy:
-              <strong
-                >doula de posparto y crianza, diplomada en psicología perinatal y especialista en
-                primeros auxilios psicológicos.</strong
-              >
+
+            <p>
+              Años después, un embarazo de alto riesgo me llevó a priorizar mi salud física y mental
+              y a profundizar procesos personales acompañados por profesionales.
             </p>
-            <p class="text-lg text-green-olive leading-relaxed mb-6">
-              Mi historia con la maternidad comenzó con el nacimiento de mi hijo, en plena pandemia.
-              Esa experiencia me mostró cuánta falta hace la empatía, la información y la contención
-              real en esos momentos tan sensibles. También me hizo reafirmar algo que ya intuía
-              desde mis años de formación docente y mi paso por el ámbito educativo, donde me
-              desempeñé como
-              <strong
-                >ayudante pedagógica: acompañar no es intervenir, sino escuchar, sostener y brindar
-                herramientas.</strong
-              >
-            </p>
-            <p class="text-lg text-green-olive leading-relaxed mb-6">
-              A lo largo del tiempo atravesé mis propios desafíos —una infancia vulnerable,
-              problemas de salud, ansiedad, pausas necesarias para cuidar de mí misma—, y de cada
-              experiencia aprendí algo valioso sobre la importancia de <strong>ser red</strong>. Por
-              eso hoy acompaño a mujeres y familias desde un lugar empático, respetuoso y humano. Mi
-              trabajo no busca reemplazar a ningún profesional de la salud, sino complementarlo:
-              <strong>trabajo de manera interdisciplinaria</strong>, respetando siempre los límites
-              de mi rol, y <strong>sugiriendo acompañamientos especializados</strong> cuando es
-              necesario.
-            </p>
-            <p class="text-lg text-green-olive leading-relaxed mb-6">
-              Creo profundamente que
-              <strong>una maternidad acompañada, respetada y emocionalmente cuidada</strong>
-              tiene un impacto directo en la salud mental de las familias y en la forma en que
-              criamos a las futuras generaciones.
-            </p>
-            <p class="text-lg text-green-olive leading-relaxed mb-6">
-              Este espacio nació para ser eso: un abrazo, un lugar donde podamos hablar de lo que
-              duele y también de lo que sostiene. Porque cuando criamos en comunidad, con amor,
-              respeto y empatía, estamos transformando el mundo desde la raíz. 🌱
+
+            <p class="font-medium">
+              Hoy soy mamá de un niño de 4 años 💜 y continúo aprendiendo a habitar la crianza desde
+              la empatía, la presencia y el respeto por los tiempos singulares.
             </p>
           </div>
-        </div>
+        </section>
+
+        <!-- Formación profesional -->
+        <section class="bg-white rounded-2xl p-6 shadow-lg h-full">
+          <h3 class="text-2xl font-semibold text-green-olive mb-6">
+            📚 Formación y trabajo profesional
+          </h3>
+
+          <div class="text-lg text-green-olive leading-relaxed">
+            <p>
+              Mi recorrido dentro del ámbito educativo y mi experiencia como ayudante pedagógica me
+              permitieron conocer de cerca las dinámicas institucionales y la diversidad de
+              necesidades que atraviesan las infancias y sus familias.
+            </p>
+
+            <p>
+              Actualmente soy
+              <span class="font-semibold">doula diplomada en psicología perinatal</span>,
+              especialista en primeros auxilios psicológicos y me encuentro en formación como
+              instructora de mindfulness.
+            </p>
+
+            <p class="italic opacity-80">
+              Trabajo desde una mirada de cuidado, prevención y acompañamiento, respetando los
+              límites éticos del rol y promoviendo la consulta con profesionales matriculados cuando
+              es necesario.
+            </p>
+          </div>
+        </section>
+
+        <!-- Enfoque del espacio -->
+        <section class="bg-green-soft/20 rounded-2xl p-6 shadow-lg h-full">
+          <h3 class="text-2xl font-semibold text-green-olive mb-6">
+            🎶 El espíritu de este espacio
+          </h3>
+
+          <p class="text-lg text-green-olive leading-relaxed">
+            La música y los lenguajes artísticos funcionan como hilo conductor para narrar procesos
+            emocionales ya elaborados y acompañados profesionalmente. A través de ellos busco
+            acercar otra mirada sobre la crianza respetuosa: una que reconozca las emociones, el
+            cuerpo y la historia personal como parte del aprendizaje y del vínculo.
+          </p>
+        </section>
       </div>
 
       <!-- Additional Info Cards -->
-      <div class="grid md:grid-cols-3 gap-8 mt-10 mb-5">
+      <div class="grid md:grid-cols-3 gap-8 mt-10 mb-10">
         <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
           <div
             class="w-16 h-16 bg-pink-light rounded-full flex items-center justify-center mx-auto mb-4"
