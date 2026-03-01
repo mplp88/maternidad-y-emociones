@@ -5,7 +5,7 @@
         &copy; {{ copyrightYear }} Maternidad y Emociones. Todos los derechos reservados.
       </p>
       <p class="text-center text-green-olive opacity-80">
-        <a href="https://landing.martinponce.com.ar" target="_blank"
+        <a href="https://martinponce.com.ar" target="_blank"
           >Desarrollado por <span class="font-semibold">Martín Ponce</span></a
         >
       </p>

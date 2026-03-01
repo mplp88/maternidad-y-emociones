@@ -79,4 +79,10 @@ router.beforeEach((to) => {
   }
 })
 
+router.afterEach((to) => {
+  window.gtag('config', 'G-N3WXR6LRND', {
+    page_path: to.fullPath,
+  })
+})
+
 export default router

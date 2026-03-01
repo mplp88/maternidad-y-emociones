@@ -1,20 +1,4 @@
 <template>
-  <!-- Ebook Section -->
-  <section class="bg-green-olive/25 pt-10 pb-3 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-5xl mx-auto text-center space-y-8">
-      <h2 class="text-3xl font-bold text-green-olive">📘 ¡Nuevo Ebook gratuito disponible!</h2>
-      <p class="text-lg text-green-olive/90 max-w-2xl mx-auto">
-        Te presento mi nuevo <strong>Ebook gratuito</strong> sobre maternidad real y emocional.
-        Descargalo y descubrí herramientas para acompañarte en esta etapa con amor y conciencia.
-      </p>
-      <button
-        class="bg-pink-coral hover:bg-pink-light text-cream hover:text-green-olive px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-        @click="$router.push('/ebook')"
-      >
-        Ir a la página de descarga
-      </button>
-    </div>
-  </section>
   <!-- Hero Section -->
   <section class="bg-cream flex items-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -29,7 +13,7 @@
               {{ pageDescription }}
             </p>
           </div>
-          <div class="flex flex-col sm:flex-row gap-4">
+          <div class="grid lg:grid-cols-2 gap-4">
             <button
               class="bg-pink-coral hover:bg-pink-light text-cream hover:text-green-olive px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
               @click="$router.push('/blog')"
@@ -41,6 +25,12 @@
               @click="$router.push('/sobre-mi')"
             >
               Conoce más sobre mí
+            </button>
+            <button
+              class="bg-green-olive text-cream hover:bg-green-soft hover:text-green-olive px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300"
+              @click="$router.push('/ebook')"
+            >
+              ¡Descargate mi ebook gratuito!
             </button>
           </div>
         </div>

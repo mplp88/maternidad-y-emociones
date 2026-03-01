@@ -15,6 +15,7 @@ import {
   faArrowLeft,
   faArrowRight,
 } from '@fortawesome/free-solid-svg-icons'
+import VueGtag from 'vue-gtag'
 
 library.add(faUser, faHome, faBlog, faSignInAlt, faSignOutAlt, faEdit, faArrowLeft, faArrowRight)
 
@@ -22,6 +23,10 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+app.use(VueGtag, {
+  config: { id: 'G-N3WXR6LRND' },
+})
+
 app.component('font-awesome-icon', FontAwesomeIcon)
 
 app.mount('#app')
