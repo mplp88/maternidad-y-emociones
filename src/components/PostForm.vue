@@ -73,6 +73,19 @@
       ></textarea>
     </div>
 
+    <!-- Fecha de creación -->
+    <div class="space-y-2">
+      <label for="createdAt" class="block text-lg font-semibold text-green-olive">
+        Fecha de creación:
+      </label>
+      <input
+        id="createdAt"
+        v-model="formData.createdAt"
+        type="datetime-local"
+        class="w-full border border-green-soft rounded-lg px-4 py-2 focus:ring-2 focus:ring-pink-coral focus:outline-none"
+      />
+    </div>
+
     <!-- Links -->
     <div class="space-y-2">
       <label for="instagram" class="block text-lg font-semibold text-green-olive">
@@ -150,6 +163,7 @@ const emit = defineEmits(['submit', 'cancel'])
 const formData = reactive({
   title: '',
   content: '',
+  createdAt: toDateTimeLocal(new Date()),
   summary: '',
   images: [null],
   imageUrls: [],
@@ -164,10 +178,12 @@ const formData = reactive({
 watch(
   () => props.post,
   (newPost) => {
+    console.log(newPost?.createdAt?.slice(0, 16))
     if (props.mode === 'edit' && newPost) {
       formData.title = newPost.title || ''
       formData.summary = newPost.summary || ''
       formData.content = newPost.content || ''
+      formData.createdAt = toDateTimeLocal(newPost.createdAt) || toDateTimeLocal(new Date())
       formData.images = newPost.images || [null]
       formData.imageUrls = newPost.imageUrls || []
       formData.author = newPost.author || author.value
@@ -180,6 +196,14 @@ watch(
   },
   { immediate: true },
 )
+
+function toDateTimeLocal(dateString) {
+  const date = new Date(dateString)
+
+  const pad = (n) => String(n).padStart(2, '0')
+
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`
+}
 
 const addImage = () => {
   formData.images.push(null)

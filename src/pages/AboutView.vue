@@ -130,58 +130,28 @@
       <!-- Additional Info Cards -->
       <div class="grid md:grid-cols-3 gap-8 mt-10 mb-10">
         <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
-          <div
-            class="w-16 h-16 bg-pink-light rounded-full flex items-center justify-center mx-auto mb-4"
-          >
-            <span class="text-2xl">🌷</span>
-          </div>
           <h3 class="text-xl font-bold text-green-olive mb-2">Misión</h3>
-          <p class="text-green-olive opacity-80">
-            Acompañar emocionalmente a mujeres y familias en el postparto y la crianza, ofreciendo
-            contención, escucha activa y herramientas psicoeducativas que promuevan el bienestar
-            integral. Ser una presencia empática y respetuosa que ayude a transitar los cambios,
-            desafíos y duelos que pueden surgir en esta etapa, articulando con profesionales de la
-            salud cuando la situación lo requiere.
+          <p class="text-green-olive leading-relaxed">
+            Acompañar procesos de maternidad y crianza desde el respeto, la empatía y el cuidado
+            emocional.
           </p>
         </div>
 
         <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
-          <div
-            class="w-16 h-16 bg-pink-light rounded-full flex items-center justify-center mx-auto mb-4"
-          >
-            <span class="text-2xl">🌱</span>
-          </div>
           <h3 class="text-xl font-bold text-green-olive mb-2">Visión</h3>
-          <p class="text-green-olive opacity-80">
-            Contribuir a una cultura más empática y consciente, donde el postparto y la crianza sean
-            acompañados con respeto, información y amor. Promover una mirada colectiva de la
-            crianza, en la que las redes de apoyo, los vínculos saludables y el trabajo
-            interdisciplinario sean pilares para el bienestar emocional de las familias y el
-            desarrollo de las infancias.
+          <p class="text-green-olive leading-relaxed">
+            Contribuir a una cultura de crianza más consciente, amorosa y comunitaria.
           </p>
         </div>
 
         <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
-          <div
-            class="w-16 h-16 bg-pink-light rounded-full flex items-center justify-center mx-auto mb-4"
-          >
-            <span class="text-2xl">💫</span>
-          </div>
           <h3 class="text-xl font-bold text-green-olive mb-2">Valores</h3>
-          <p class="text-green-olive opacity-80">
-            <span class="font-bold">Empatía:</span> Escuchar y acompañar con sensibilidad, sin
-            juicios ni imposiciones. <span class="font-bold">Respeto:</span> Reconocer la
-            singularidad de cada historia, cuerpo y camino.
-            <span class="font-bold">Acompañamiento consciente:</span>
-            Estar presente con atención genuina, conexión emocional y límites claros.
-            <span class="font-bold">Interdisciplina:</span> Trabajar en articulación con otros
-            saberes para ofrecer un acompañamiento integral y ético.
-            <span class="font-bold">Confianza:</span> Creer en las capacidades, decisiones y
-            procesos de cada familia. <span class="font-bold">Amor:</span> La base de cada palabra,
-            gesto y encuentro.
+          <p class="text-green-olive leading-relaxed">
+            Empatía · Respeto · Escucha activa · Ética profesional · Comunidad
           </p>
         </div>
       </div>
+
       <div class="text-center mb-10">
         <h3 class="text-3xl lg:text-5xl font-bold text-green-olive mb-6" id="formacion">
           Formación
