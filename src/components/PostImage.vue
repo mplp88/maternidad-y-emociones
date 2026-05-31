@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full h-full overflow-hidden rounded-2xl" v-if="images.length">
+  <div class="relative w-full max-w-lg mx-auto overflow-hidden rounded-lg" v-if="images.length">
     <div v-if="images.length === 1">
       <img :src="images[0]" :alt="`Imagen 1`" />
     </div>
