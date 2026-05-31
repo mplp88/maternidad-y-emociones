@@ -35,7 +35,7 @@
               {{ post.summary }}
             </p>
             <p
-              v-if="post.links"
+              v-if="post.links.instagram || post.links.facebook"
               class="text-lg text-semibold text-green-olive opacity-80 mb-6 leading-relaxed"
             >
               Ver en:
